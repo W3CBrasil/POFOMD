@@ -122,4 +122,3 @@ __PACKAGE__->belongs_to(
 sub total { formata_valor( shift->valor ) }
 
 1;
-

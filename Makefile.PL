@@ -15,26 +15,29 @@ requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';
 requires 'Moose';
 requires 'namespace::autoclean';
-requires 'Config::General'; # This should reflect the config file format you've chosen
-                 # See Catalyst::Plugin::ConfigLoader for supported formats
+requires 'Config::General';
+requires 'autodie';
+requires 'DateTime';
 
 requires 'Catalyst::View::TT';
 requires 'Catalyst::View::JSON';
 requires 'FCGI';
 requires 'FCGI::ProcManager';
-requires 'Redis';
 requires 'XML::Simple';
-requires 'dbicadmin';
 requires 'MooseX::Types::JSON';
-requires 'Text::CSV';
-requires 'SQL::Translator';
-requires 'Catalyst::Model::DBIC::Schema';
-requires 'Redis';
+
+requires 'Text::Unaccent';
 requires 'Text::Unidecode';
+requires 'Text::CSV';
 requires 'Text::CSV_XS';
 requires 'Text2URI';
+
+requires 'SQL::Translator';
+requires 'DBIx::Class';
+requires 'Catalyst::Model::DBIC::Schema';
 requires 'DBIx::Class::ResultClass::HashRefInflator';
 requires 'DBD::Pg';
+requires 'Redis';
 
 test_requires 'Test::More' => '0.88';
 catalyst;
