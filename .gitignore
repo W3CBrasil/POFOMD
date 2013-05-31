@@ -18,3 +18,4 @@ pm_to_blib
 Session.vim
 *.csv
 *.xml
+pofomd_local.*
