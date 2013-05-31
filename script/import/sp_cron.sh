@@ -16,7 +16,7 @@ wget -q --no-check-certificate -O $FILE \
 # if it downloaded successfully
 if [ $? -eq 0 ]; then
     unzip -d $TMP_DIR $FILE;
-    DATASET=`ls $TMP_DIR/dataset*csv`;
+    DATASET=`ls $TMP_DIR/despesa*csv`;
     perl -I$POFOMD_PERL_LIB script/import/sp.pl --year $YEAR --dataset $DATASET > /dev/null 2>&1;
     rm $FILE;
     rm $DATASET;
