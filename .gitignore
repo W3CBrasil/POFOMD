@@ -3,6 +3,8 @@ blib/
 _build/
 cover_db/
 inc/
+tmp/
+!tmp/.keep
 Build
 Build.bat
 .last_cover_stats
