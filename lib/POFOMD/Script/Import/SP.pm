@@ -8,18 +8,11 @@ use DateTime;
 use autodie;
 use utf8;
 
-with 'Catalyst::ScriptRole';
+with 'MooseX::Getopt::GLD';
 
 my $CACHE_INSERTING = {};
 
-# TODO:
-# has log => (
-#     is      => 'ro',
-#     lazy    => 1,
-#     default => sub { POFOMD->log },
-# );
-
-has csv_obj => (
+has _csv_obj => (
     is      => 'ro',
     default => sub {
         Text::CSV_XS->new({
@@ -32,13 +25,13 @@ has csv_obj => (
     }
 );
 
-has text2uri => (
+has _text2uri => (
     is      => 'ro',
     isa     => 'Text2URI',
     default => sub { Text2URI->new },
 );
 
-has schema => (
+has _schema => (
     is      => 'ro',
     isa     => 'DBIx::Class::Schema',
     default => sub { POFOMD->model('DB')->schema },
@@ -56,18 +49,18 @@ has year => (
 has dataset => (
     is            => 'rw',
     isa           => 'Str',
-    required      => 1,
-    documentation => "The csv file downloaded from "
-      . 'https://www.fazenda.sp.gov.br/SigeoLei131/Paginas/DownloadReceitas.aspx?flag=2&ano=$year',
+    documentation => "The csv file downloaded from: "
+    . "https://www.fazenda.sp.gov.br/SigeoLei131/Paginas/DownloadReceitas.aspx?flag=2&ano=\$year \n"
+    . "Replace \$year with the year you are interested in.",
 );
 
-has dataset_name => (
+has _dataset_name => (
     is      => 'ro',
     isa     => 'Str',
     default => 'Estado de São Paulo',
 );
 
-has dataset_id => (
+has _dataset_id => (
     is      => 'ro',
     isa     => 'Int',
     lazy    => 1,
@@ -78,14 +71,14 @@ sub _build_dataset_id {
     my ($self) = @_;
 
     my $year       = $self->year;
-    my $schema     = $self->schema;
-    my $t          = $self->text2uri;
+    my $schema     = $self->_schema;
+    my $t          = $self->_text2uri;
     my $dataset_rs = $schema->resultset('Dataset');
     my $periodo_rs = $schema->resultset('Periodo');
 
     return $dataset_rs->find_or_create(
         {
-            nome    => $self->dataset_name,
+            nome    => $self->_dataset_name,
             periodo => $periodo_rs->find_or_create( { ano => $year } ),
             uri     => $t->translate( join( '-', 'estado-sao-paulo', $year ) ),
         }
@@ -94,6 +87,12 @@ sub _build_dataset_id {
 
 sub run {
     my ($self) = @_;
+
+    unless ($self->dataset) {
+        print "Dataset file is mandatory.\n";
+        print "See --usage for details.\n";
+        exit(0);
+    }
 
     my $start_time = DateTime->now;
 
@@ -111,18 +110,18 @@ sub run {
 
     printf(
         "Finished loading CSV (year %d) for %s in %d minutes.\n",
-        $self->year, $self->dataset_name, $elapse->in_units('minutes')
+        $self->year, $self->_dataset_name, $elapse->in_units('minutes')
     )
 }
 
 sub load_csv_into_db {
     my ($self, $fh) = @_;
 
-    my $pagamento_rs= $self->schema->resultset('Pagamento');
-    my $gasto_rs    = $self->schema->resultset('Gasto');
-    my $dataset_id  = $self->dataset_id;
+    my $pagamento_rs= $self->_schema->resultset('Pagamento');
+    my $gasto_rs    = $self->_schema->resultset('Gasto');
+    my $dataset_id  = $self->_dataset_id;
 
-    my $csv = $self->csv_obj;
+    my $csv = $self->_csv_obj;
     $csv->bind_columns(
         \my (
             $ANO_DE_REFERENCIA,         $CODIGO_ORGAO,
@@ -147,7 +146,7 @@ sub load_csv_into_db {
         )
     );
 
-    my $t    = $self->text2uri;
+    my $t    = $self->_text2uri;
     my $line = 0;
     # $gasto_rs->search({ dataset_id => $dataset_id })->delete;
 
@@ -259,7 +258,7 @@ sub _load_from_database {
     my ($self, $campo) = @_;
 
     my $campo_lc = lc $campo;
-    my @rows = $self->schema->resultset($campo)->search({}, {
+    my @rows = $self->_schema->resultset($campo)->search({}, {
         columns => [ 'codigo', 'id' ]
     })->all;
 
@@ -281,7 +280,7 @@ sub _cache_or_create {
         debug("\tloading from cache: $campo");
     }
     else {
-        my $obj = $self->schema->resultset($set)->find_or_new($info);
+        my $obj = $self->_schema->resultset($set)->find_or_new($info);
 
         debug("\tdidn't exist in cache - %s: $campo", $obj);
 
