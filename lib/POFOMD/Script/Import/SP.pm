@@ -1,5 +1,6 @@
 package POFOMD::Script::Import::SP;
 use Moose;
+use namespace::autoclean;
 use POFOMD ();
 use Text::Unaccent ();
 use Text::CSV_XS;
@@ -311,5 +312,7 @@ sub debug {
 
     printf("$string\n", $what_happened);
 }
+
+__PACKAGE__->meta->make_immutable;
 
 1;
