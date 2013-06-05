@@ -1,0 +1,51 @@
+Validação do HTML
+http://validator.w3.org/check?uri=http%3A%2F%2Fparaondefoimeudinheiro.com.br%2Fdataset%2Festado-sao-paulo-2012&charset=%28detect+automatically%29&doctype=Inline&group=0
+
+Note que grande parte dos erros são de detalhes em fechamento de tags, por exemplo, o elemento <link> não precisa ser fechado com </link>
+--------------------------------------
+Semântica
+Colocar uma estrutura de cabeçalhos adequada. A estrutura de cabeçalhos fica somente no nível 2. Voce pode trabalhar da seguinte forma:
+
+H1 - Logo - Para Onde foi meu dinheiro
+H2 - Manter a navegação dentro do box dinâmico, mas colocar a descrição dentro do H2.
+H3 - Funções...
+
+Voce pode trocar diversas DIVs por elementos do HTML5, por exemplo:
+<div class="page-header"> para <header class="page-header">
+<div class="container-fluid"> para <nav class="container-fluid">
+Primeiro <div class="row"> para <section class="row">
+<div class="span16"> para <article  class="span16">
+Segundo <div class="row"> para <article class="row">
+<div id="mainvis-description" style="width: 210px; height: 396px;"> para <aside id="mainvis-description" style="width: 210px; height: 396px;">
+
+Retire também o CSS inline desses elementos.
+
+---------------------------------------------
+
+Acessibilidade
+Colocar um label no formulário de busca no topo do site. Ao navegar com tecnologia assistiva (leitor de tela) só identifico que é uma busca depois de passar pelo campo. Sugestão:
+
+<label for="busca">Busca</label><input type="text" name="q" id="busca" placeholder="Busca por credores" size="22"><a href='#'><img src="/static/images/lupa.png" alt="Busca" /></a></form>
+
+Colocar um link no topo da página para saltar para o conteúdo principal. Ao navegar via teclado, fica complicado chegar no conteúdo principal.
+<a href="#conteudo">Ir para o conteúdo</a>
+.....
+<a name="conteudo"></a>
+Se quiser, pode esconder com CSS e que ele seja exibido somente depois do primeiro TAB. Veja esse exemplo, no terceiro link:
+http://www.webstandards.org/
+
+Declarar o idioma da página
+<html lang="pt-br">
+
+Colocar atributo ALT nas imagens para descreve-las, por exemplo
+<img src="http://paraondefoimeudinheiro.com.br/static/images/logo-pofomd-novo.png" border="0" class="pofomd" alt="Para onde foi o meu dinheiro?">
+
+<img src="http://paraondefoimeudinheiro.com.br/static/images/logo-nicbr.png" alt="NIC.br">
+
+Utilize também o atributo role para melhorar a acessibilide (ARIA):
+<header role="banner">
+<nav><ul role="navigation">
+<article role="main">
+<aside role="complementary">
+<form role="search">
+<footer role="contentinfo">
