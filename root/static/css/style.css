@@ -118,6 +118,8 @@ text-align: center;
 	color: #fff;
 	font-size: 0.8em;
 	font-weight: bold;
+    width: 714px;
+    height: 400px;
 }
 #chart1{
 	float: left;
@@ -133,6 +135,11 @@ text-align: center;
 	color: #fff;
 	font-weight: normal;
 	margin-bottom: 0.1em;
+}
+
+#mainvis-description {
+    width: 210px;
+    height: 396px;
 }
 
 #mainvis-description,

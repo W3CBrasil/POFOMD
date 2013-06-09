@@ -1,29 +1,42 @@
 [% META variavel=1 %]
 
 <style type="text/css">
-body{
+body {
 	font-family: Graublau, Georgia, serif;
 }
 
-.jqplot-target{
+.jqplot-target {
 	font-size: 10pt;
 	margin-left: 15px;
 }
 
-.jqplot-yaxis-label{
+.jqplot-yaxis-label {
 	margin-left: -15px;
 	margin-right: 15px;
 }
 
 #tooltip1 {
-        padding:5px 10px;
-        background-color: rgba(95%, 95%, 95%, 0.8);
-		border: 1px solid #e0e0e0;
-    }
-	
+	padding:5px 10px;
+	background-color: rgba(95%, 95%, 95%, 0.8);
+	border: 1px solid #e0e0e0;
+	position:absolute;
+	z-index:99;
+	display:none;
+}
+
 .jqplot-bubble-point:hover{
 	cursor: hand;
 	cursor: pointer;
+}
+
+#chart1 {
+    width:700px;
+    height: 400px;
+}
+
+#chart1-description {
+    width: 210px;
+    height: 396px;
 }
 </style>
 
@@ -33,10 +46,10 @@ body{
 			<p align="center">Carregando, aguarde.</p>
 		</div>
 
-		<div style="position:absolute;z-index:99;display:none;" id="tooltip1"></div>
-		<div id="chart1" class="jqplot-target" style="width:700px; height: 400px;"></div>
-		
-		<div id="chart1-description" style="width: 210px; height: 396px;"><div class='content-fill'>
+		<div id="tooltip1"></div>
+		<div id="chart1" class="jqplot-target"></div>
+
+		<div id="chart1-description"><div class='content-fill'>
 				<div class='title'>Dataset</div>
 				<div class='text'>É um conjunto de dados baseado em informações anuais sobre a execução do orçamento público.<br /><br />
 				Neste gráfico é possível verificar os dados relativos aos últimos anos em uma linha histórica e o montante total de gastos na linha vertical.<br />
