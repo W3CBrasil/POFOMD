@@ -13,18 +13,18 @@ getNode("[% node %]");
 		</div>
 
 		[% IF node %]
-		<div class="voltarpagina" style="display:none;visibility:hidden;">
+		<div class="voltarpagina hide">
 		<p><a href="javascript:history.go(-1)">Voltar para página anterior</a></p>
 		</div>
 		[% END %]
 
-		<div id="mainvis" style="width: 714px; height: 400px;"> </div>
-		
-		<div id="mainvis-description" style="width: 210px; height: 396px;"><div class='content-fill'>
+		<div id="mainvis"> </div>
+
+		<div id="mainvis-description"><div class='content-fill'>
 			[% IF nodetype == 'acao' %]
 				<div class='title'>Valor liquidado</div>
-				<div class='text'>Esse é o segundo estágio da despesa e consiste na verificação do direito adquirido pelo credor, tendo por 
-base os títulos e documentos comprobatórios do respectivo crédito (art. 63 da Lei nº 4.320/64). Vale dizer 
+				<div class='text'>Esse é o segundo estágio da despesa e consiste na verificação do direito adquirido pelo credor, tendo por
+base os títulos e documentos comprobatórios do respectivo crédito (art. 63 da Lei nº 4.320/64). Vale dizer
 que é a comprovação de que o credor cumpriu todas as obrigações constantes do empenho.</div>
 			[% ELSIF nodetype == 'programa' %]
 				<div class='title'>Ações</div>
@@ -41,7 +41,7 @@ que é a comprovação de que o credor cumpriu todas as obrigações constantes 
 			[% END %]
 		</div></div>
 
-		<div id="legenda" class="legenda" style="display:none;">Tri = Trilhões, Bi = Bilhões, Mi = Milhões</div>
+		<div id="legenda" class="legenda hide">Tri = Trilhões, Bi = Bilhões, Mi = Milhões</div>
 
 		<div id="totais"><div class="total"></div></div>
 
