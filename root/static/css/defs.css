@@ -10,10 +10,6 @@ padding-top: 60px; /* 40px to make the container go all the way to the bottom of
 padding-top: 0px;
 }
 
-.container > footer p {
-text-align: center; /* center align it with the container */
-}
-
 /* The white background content wrapper */
 .content {
 background-color: #fff;
@@ -45,14 +41,8 @@ border-left: 1px solid #eee;
 }
 
 .footer {
-
 	background-color: #222;
 	color: white;
-	min-width: 940px;
-	padding: 0;
-	margin: 0;
-
-	border-top: 1px solid #FFF;
 
 	-webkit-box-shadow: inset 0 5px 15px rgba(255,255,255,.25);
 	-moz-box-shadow: inset 0 5px 15px rgba(255,255,255,.25);
@@ -66,18 +56,15 @@ border-left: 1px solid #eee;
 	background-image: -webkit-linear-gradient(top, #333333, #222222);
 	background-image: -o-linear-gradient(top, #333333, #222222);
 	background-image: linear-gradient(top, #333333, #222222);
-
-	/*height: 400px; vc pode definir aqui se quiser
-			ai ja faz um .footer > span4 {  height: XPTO  } pra poder por tracinhos entre as bordas
-	*/
-
 }
+
 .margem {
 	padding: 20px 0;
 }
- 
+
 .malha {
 	background: transparent url(/static/images/grid-18px.png) top center;
+	padding: 20px 0;
 }
 
 .footer h4 {
