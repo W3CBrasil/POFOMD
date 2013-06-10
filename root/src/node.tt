@@ -4,7 +4,7 @@ getNode("[% node %]");
 </script>
 
 <div class="row">
-	<div class="span16">
+	<div class="span12">
 		<div class="carregando">
 			<p align="center">Carregando, aguarde.</p>
 		</div>
@@ -48,7 +48,7 @@ que é a comprovação de que o credor cumpriu todas as obrigações constantes 
 	</div>
 </div>
 <div class="row">
-	<div class="span16">
+	<div class="span12">
 		<div class="my-new-list"></div>
 	</div>
 </div>
