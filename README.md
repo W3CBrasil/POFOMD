@@ -12,34 +12,29 @@ Rodando o projeto localmente para testes
 
 1.Instalando os pacotes do sistema que serão necessários:
 
-    $ sudo apt-get install git postgresql postgresql-server-dev-all capnminus libxml-sax-expat-perl libdbix-class-perl
+    $ sudo apt-get install git postgresql postgresql-server-dev-all cpanminus libxml-sax-expat-perl libdbix-class-perl
 
 2.Ajustando as configurações do PostgreSQL:
-    
-    $ sudo su postgres
-    $ createuser seu_user
-    $ createdb seu_db
+
+    $ sudo su - postgres
+    $ createuser -E -P seu_user
+    $ createdb -O seu_user seu_db
     $ exit
-    $ sudo su postgres -c psql
-    postgres=# alter role seu_user with encrypted password 'seu_pass';
 
 3.Clonando o projeto:
 
     $ git clone http://github.com/CodingForChange/POFOMD.git
 
 4.Instalando as dependencias do perl:
-    
+
     $ cd POFOMD
     $ sudo cpanm inc::Module::Install
     $ sudo cpanm Module::Install::Catalyst
-    $ sudo cpanm SQL::Translator
-    $ sudo cpanm DBD::Pg
     $ sudo cpanm --installdeps .
-    $ sudo perl Makefile.PL
 
 5.Instalar as tabelas do banco de dados:
 
-    $ sudo dbicadmin -Ilib --schema=POFOMD::Schema --connect='["dbi:Pg:host=localhost;dbname=seu_db", "seu_user", "seu_pass"]' --deploy
+    $ dbicadmin -Ilib --schema=POFOMD::Schema --connect='["dbi:Pg:host=localhost;dbname=seu_db", "seu_user", "seu_pass"]' --deploy
 
 6.Edite o arquivo pofomd.conf, na raiz do projeto, e coloque as suas configurações corretas de conexão com o banco.
 
@@ -51,7 +46,7 @@ Rodando o projeto localmente para testes
     * Entre no diretório lib '$ cd lib'
     * execute o arquivo de migração;
 
-        $ sudo perl ../script/import/sp_to_pg.pl 2012 path/para/o/seu/arquivo.csv
+        $ perl ../script/import/sp_to_pg.pl 2012 path/para/o/seu/arquivo.csv
 
 8.Rodando o servidor de teste:
 
