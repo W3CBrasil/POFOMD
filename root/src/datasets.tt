@@ -41,7 +41,7 @@ body {
 </style>
 
 <div class="row">
-	<div class="span16">
+	<div class="span12">
 		<div class="carregando">
 			<p align="center">Carregando, aguarde.</p>
 		</div>
@@ -61,7 +61,7 @@ body {
 </div>
 <br />
 <div class="row">
-	<div class="span16">
+	<div class="span12">
 		<div class="my-new-list"></div>
 	</div>
 </div>
