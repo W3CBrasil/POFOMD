@@ -1,4 +1,5 @@
 package POFOMD::Controller::Credor;
+use utf8;
 use Moose;
 use namespace::autoclean;
 

@@ -1,4 +1,5 @@
 package POFOMD::Controller::Eficiencia::SP::CamaraMunicipal;
+use utf8;
 use Moose;
 use namespace::autoclean;
 

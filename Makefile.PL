@@ -10,6 +10,7 @@ name 'POFOMD';
 all_from 'lib/POFOMD.pm';
 
 requires 'Catalyst::Runtime' => '5.90010';
+requires 'Catalyst::Plugin::Unicode::Encoding';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';

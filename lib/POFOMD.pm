@@ -17,6 +17,7 @@ use Catalyst::Runtime 5.80;
 #                 directory
 
 use Catalyst qw/
+    Unicode::Encoding
     ConfigLoader
     Static::Simple
 /;
@@ -42,6 +43,7 @@ __PACKAGE__->config(
     default_view                                => 'TT',
     enable_catalyst_header                      => 1,      # Send X-Catalyst header
     'View::TT'                                  => {
+        ENCODING => 'utf-8',
         INCLUDE_PATH => [
             map { __PACKAGE__->path_to(@$_) }[
                 qw(root

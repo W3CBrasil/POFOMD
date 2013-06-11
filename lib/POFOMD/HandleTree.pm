@@ -1,4 +1,5 @@
 package POFOMD::HandleTree;
+use utf8;
 use Moose;
 use namespace::autoclean;
 
@@ -19,7 +20,7 @@ sub handle_TREE : Private {
 
     foreach my $item ( @{ $c->stash->{data} } ) {
         next unless $item->{total};
-       
+
         my $uri = $c->req->uri->path;
         $uri =~ s/^(\/.*)(\/.*)\/data/$1$2/;
 

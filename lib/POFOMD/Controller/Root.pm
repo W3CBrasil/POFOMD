@@ -1,4 +1,5 @@
 package POFOMD::Controller::Root;
+use utf8;
 use Moose;
 use namespace::autoclean;
 
