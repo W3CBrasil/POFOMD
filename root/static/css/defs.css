@@ -31,15 +31,6 @@ padding: 20px 20px 10px;
 margin: -20px -20px 20px;
 }
 
-/*
- * FIXME
- * Give a quick and non-cross-browser friendly divider */
-.content .span4 {
-margin-left: 0;
-padding-left: 19px;
-border-left: 1px solid #eee;
-}
-
 .footer {
 	background-color: #222;
 	color: white;

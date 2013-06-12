@@ -20,37 +20,39 @@ getNode("[% node %]");
 </div>
 
 <div class="row">
-	<div class="span12">
-		<div id="mainvis"> </div>
+    <div id="mainvis" class="span8"> </div>
 
-		<div id="mainvis-description"><div class='content-fill'>
-			[% IF nodetype == 'acao' %]
-				<div class='title'>Valor liquidado</div>
-				<div class='text'>Esse é o segundo estágio da despesa e consiste na verificação do direito adquirido pelo credor, tendo por
-base os títulos e documentos comprobatórios do respectivo crédito (art. 63 da Lei nº 4.320/64). Vale dizer
-que é a comprovação de que o credor cumpriu todas as obrigações constantes do empenho.</div>
-			[% ELSIF nodetype == 'programa' %]
-				<div class='title'>Ações</div>
-				<div class='text'>É o detalhamento do programa - a ação pode ser um Projeto (ação destinada ao investimento) ou Atividade (voltada para a manutenção de um serviço já existente) ou ainda uma operação especial (referente aos serviços da dívida pública, precatórios e outros gastos que são de toda a administração).</div>
-			[% ELSIF nodetype == 'subfuncao' %]
-				<div class='title'>Programas</div>
-				<div class='text'>O programa é o instrumento de organização da atuação governamental que articula um conjunto de ações que concorrem para a concretização de um objetivo comum preestabelecido, mensurado por indicadores instituídos no plano, visando à solução de um problema ou o atendimento de determinada necessidade ou demanda da sociedade. O Programa apresenta o código definido no PPA 2010 – 2013.</div>
-			[% ELSIF nodetype == 'funcao' %]
-				<div class='title'>Subfunções</div>
-				<div class='text'>Representa um nível de agregação imediatamente inferior à função e deve evidenciar cada área da atuação governamental, por intermédio da agregação de determinado subconjunto de despesas e identificação da natureza básica das ações que se aglutinam em torno das funções. As subfunções podem ser combinadas com funções diferentes daquelas às quais estão relacionadas na Portaria da Secretaria do Tesouro Nacional – STN - nº 42, de 1999</div>
-			[% ELSE %]
-				<div class='title'>Funções</div>
-				<div class='text'>É o maior nível de agregação das diversas áreas de atuação do setor público. A função está relacionada com a missão institucional do órgão, por exemplo, cultura, educação, saúde, defesa, que guarda relação com os respectivos Ministérios. O primeiro quadro deste sistema apresenta os dados distribuídos nas respectivas funções de governo.</div>
-			[% END %]
-		</div></div>
+    <div class="span4">
+        <div id="mainvis-description"><div class='content-fill'>
+            [% IF nodetype == 'acao' %]
+                <div class='title'>Valor liquidado</div>
+                <div class='text'>Esse é o segundo estágio da despesa e consiste na verificação do direito adquirido pelo credor, tendo por
+    base os títulos e documentos comprobatórios do respectivo crédito (art. 63 da Lei nº 4.320/64). Vale dizer
+    que é a comprovação de que o credor cumpriu todas as obrigações constantes do empenho.</div>
+            [% ELSIF nodetype == 'programa' %]
+                <div class='title'>Ações</div>
+                <div class='text'>É o detalhamento do programa - a ação pode ser um Projeto (ação destinada ao investimento) ou Atividade (voltada para a manutenção de um serviço já existente) ou ainda uma operação especial (referente aos serviços da dívida pública, precatórios e outros gastos que são de toda a administração).</div>
+            [% ELSIF nodetype == 'subfuncao' %]
+                <div class='title'>Programas</div>
+                <div class='text'>O programa é o instrumento de organização da atuação governamental que articula um conjunto de ações que concorrem para a concretização de um objetivo comum preestabelecido, mensurado por indicadores instituídos no plano, visando à solução de um problema ou o atendimento de determinada necessidade ou demanda da sociedade. O Programa apresenta o código definido no PPA 2010 – 2013.</div>
+            [% ELSIF nodetype == 'funcao' %]
+                <div class='title'>Subfunções</div>
+                <div class='text'>Representa um nível de agregação imediatamente inferior à função e deve evidenciar cada área da atuação governamental, por intermédio da agregação de determinado subconjunto de despesas e identificação da natureza básica das ações que se aglutinam em torno das funções. As subfunções podem ser combinadas com funções diferentes daquelas às quais estão relacionadas na Portaria da Secretaria do Tesouro Nacional – STN - nº 42, de 1999</div>
+            [% ELSE %]
+                <div class='title'>Funções</div>
+                <div class='text'>É o maior nível de agregação das diversas áreas de atuação do setor público. A função está relacionada com a missão institucional do órgão, por exemplo, cultura, educação, saúde, defesa, que guarda relação com os respectivos Ministérios. O primeiro quadro deste sistema apresenta os dados distribuídos nas respectivas funções de governo.</div>
+            [% END %]
+        </div></div>
     </div>
 </div>
 
-<div class="row">
-	<div class="span12">
-		<div id="legenda" class="legenda hide">Tri = Trilhões, Bi = Bilhões, Mi = Milhões</div>
+<div class="row legenda">
+	<div class="span4">
+		<div id="legenda" class="hide">Tri = Trilhões, Bi = Bilhões, Mi = Milhões</div>
+    </div>
 
-		<div id="totais"><div class="total"></div></div>
+	<div class="span4 text-right">
+		<div class="total"></div>
 	</div>
 </div>
 

@@ -80,23 +80,11 @@ padding: 20px 20px;
 	-webkit-border-radius: 5px;
 }
 
-#legenda {
-width: 280px;
-float: left;
+.legenda {
 font-family: "Lucida Grande", Tahoma;
 font-size: 8pt;
 color: #666666;
 padding:10px;
-}
-
-#totais {
-width: 390px;
-float: left;
-text-align: right;
-font-family: "Lucida Grande", Tahoma;
-font-size: 8pt;
-color: #666666;
-padding: 10px;
 }
 
 #prog_total{
@@ -111,14 +99,12 @@ text-align: center;
 
 
 #mainvis {
-	float: left;
 	position: relative;
 	overflow: hidden;
     cursor: pointer;
 	color: #fff;
 	font-size: 0.8em;
 	font-weight: bold;
-    width: 714px;
     height: 400px;
 }
 #chart1{
@@ -138,20 +124,17 @@ text-align: center;
 }
 
 #mainvis-description {
-    width: 210px;
     height: 396px;
 }
 
 #mainvis-description,
 #chart1-description {
-	margin-left: 10px;
-	float: left;
 	border: 1px solid #e0e0e0;
 	background-color: #fff;
 }
 
 #mainvis-description .content-fill,
-#chart1-description .content-fill{
+#chart1-description .content-fill {
 	padding: 10px;
 }
 
