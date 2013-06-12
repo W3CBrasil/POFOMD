@@ -149,12 +149,20 @@ _gaq.push(['_trackPageview']);
 
 			<div class="row">
 				<div class="span10">
-					<img src="[% c.uri_for('/static/images/logo-pofomd-novo.png') %]" border="0" class="pofomd" /> <img src="[% c.uri_for('/static/images/logo-rnsp.png') %]" border="0" class='rnsp' />
+                    <img src="[% c.uri_for('/static/images/logo-pofomd-novo.png') %]" class="pofomd" alt="Para onde foi o meu dinheiro?" />
+                    <img src="[% c.uri_for('/static/images/logo-rnsp.png') %]" class='rnsp' alt="Rede Nossa São Paulo" />
 				</div>
 
 				<div class="span2">
 					<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.paraondefoiomeudinheiro.org.br" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<!-- kludge to make IE behave well, while being conformant with W3C -->
+<!--[if IE]>
 					<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.paraondefoiomeudinheiro.org.br&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+
+<![endif]-->
+<!--[if !IE]>-->
+					<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.paraondefoiomeudinheiro.org.br&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" style="border:none; overflow:hidden; width:150px; height:21px;"></iframe>
+<!--<![endif]-->
 				</div>
 			</div>
 		</div>
@@ -170,10 +178,10 @@ _gaq.push(['_trackPageview']);
     <div class="row parceiros">
         <div class="pull-right">
             <div class="label">Parceiros:</div>
-            <div class="logo"><a href="http://www.w3c.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-w3c.png') %]" /></a></div>
-            <div class="logo"><a href="http://www.nic.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-nicbr.png') %]" /></a></div>
-            <div class="logo"><a href="http://www.cgi.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-cgibr.png') %]" /></a></div>
-            <div class="logo"><a href="http://br.okfn.org/" target="_blank"><img src="[% c.uri_for('/static/images/logo-okfn.png') %]" /></a></div>
+            <div class="logo"><a href="http://www.w3c.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-w3c.png') %]" alt="W3C" /></a></div>
+            <div class="logo"><a href="http://www.nic.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-nicbr.png') %]" alt="NIC.br" /></a></div>
+            <div class="logo"><a href="http://www.cgi.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-cgibr.png') %]" alt="CGI.br" /></a></div>
+            <div class="logo"><a href="http://br.okfn.org/" target="_blank"><img src="[% c.uri_for('/static/images/logo-okfn.png') %]" alt="OKF" /></a></div>
         </div>
     </div>
 
