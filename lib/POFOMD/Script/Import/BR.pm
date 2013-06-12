@@ -159,7 +159,7 @@ sub load_csv_into_db {
 
         my $pagamento = $pagamento_rs->create({
             numero_processo => "NAO-INFORMADO-$CODIGO_ACAO-$random_string",
-            numero_nota_empenho => 'NAO-INFORMADO', # $NUMERO_DOCUMENTO_PAGAMENTO?
+            numero_nota_empenho => $NUMERO_DOCUMENTO_PAGAMENTO,
             tipo_licitacao  => 'NAO-INFORMADO',
             valor_empenhado => 0,
             valor_liquidado => $VALOR,
@@ -206,7 +206,7 @@ sub load_csv_into_db {
                 {
                     codigo    => $CODIGO_FAVORECIDO,
                     nome      => _unaccent($NOME_FAVORECIDO),
-                    documento => '0', # $CODIGO_FAVORECIDO?
+                    documento => $CODIGO_FAVORECIDO,
                     uri       => $t->translate( _unaccent($NOME_FAVORECIDO) ),
                 }
             ),
