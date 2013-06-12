@@ -7,7 +7,6 @@ use Text::CSV_XS;
 use Text2URI;
 use DateTime;
 use autodie;
-use String::Random qw(random_regex);
 use utf8;
 
 with 'MooseX::Getopt::GLD';
@@ -36,6 +35,19 @@ has _schema => (
     is      => 'ro',
     isa     => 'DBIx::Class::Schema',
     default => sub { POFOMD->model('DB')->schema },
+);
+
+has _resultsets => (
+    is      => 'ro',
+    isa     => 'HashRef',
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        return +{
+            map { $_ => $self->_schema->resultset($_) }
+              qw/Funcao Subfuncao Programa Acao Beneficiario Despesa Gestora Recurso/
+        };
+    },
 );
 
 has year => (
@@ -96,7 +108,9 @@ sub run {
 
     my $start_time = DateTime->now;
 
-    $self->_load_from_database($_) for qw /Funcao Subfuncao Programa Acao Beneficiario Despesa Gestora Recurso/;
+    for (my ($k, $v) = each %{ $self->_resultsets }) {
+        $self->_load_from_database($k, $v);
+    }
 
     open my $fh, '<:encoding(iso-8859-1)', $self->dataset;
 
@@ -155,12 +169,17 @@ sub load_csv_into_db {
         next if !$VALOR;
 
         $VALOR =~ s/\,/\./g;
-        my $random_string = random_regex('\d\d\d\d\d\d\d\d\d\d\d\d');
 
-        my $pagamento = $pagamento_rs->create({
-            numero_processo => "NAO-INFORMADO-$CODIGO_ACAO-$random_string",
+        my $pagamento;
+
+        if ($pagamento = $pagamento_rs->find({ numero_nota_empenho => $NUMERO_DOCUMENTO_PAGAMENTO })) {
+            next if $pagamento->gastos->first->dataset_id eq $dataset_id;
+        }
+
+        $pagamento ||= $pagamento_rs->create({
+            numero_processo => undef, # não informado
             numero_nota_empenho => $NUMERO_DOCUMENTO_PAGAMENTO,
-            tipo_licitacao  => 'NAO-INFORMADO',
+            tipo_licitacao  => undef, # não informado
             valor_empenhado => 0,
             valor_liquidado => $VALOR,
             valor_pago_anos_anteriores => 0,
@@ -202,16 +221,6 @@ sub load_csv_into_db {
             ),
 
             $self->_cache_or_create(
-                beneficiario => 'Beneficiario',
-                {
-                    codigo    => $CODIGO_FAVORECIDO,
-                    nome      => _unaccent($NOME_FAVORECIDO),
-                    documento => $CODIGO_FAVORECIDO,
-                    uri       => $t->translate( _unaccent($NOME_FAVORECIDO) ),
-                }
-            ),
-
-            $self->_cache_or_create(
                 despesa => 'Despesa',
                 {
                     codigo => $CODIGO_GRUPO_DESPESA,
@@ -224,6 +233,15 @@ sub load_csv_into_db {
                 {
                     codigo => $CODIGO_UNIDADE_GESTORA,
                     nome   => $NOME_UNIDADE_GESTORA,
+                }
+            ),
+
+            $self->_cache_or_create_beneficiario(
+                {
+                    codigo    => $CODIGO_FAVORECIDO,
+                    nome      => _unaccent($NOME_FAVORECIDO),
+                    documento => $CODIGO_FAVORECIDO,
+                    uri       => $t->translate( _unaccent($NOME_FAVORECIDO) ),
                 }
             ),
 
@@ -246,10 +264,10 @@ sub load_csv_into_db {
 }
 
 sub _load_from_database {
-    my ($self, $campo) = @_;
+    my ($self, $campo, $rs) = @_;
 
     my $campo_lc = lc $campo;
-    my @rows = $self->_schema->resultset($campo)->search({}, {
+    my @rows = $rs->search({}, {
         columns => [ 'codigo', 'id' ]
     })->all;
 
@@ -271,12 +289,44 @@ sub _cache_or_create {
         debug("\tloading from cache: $campo");
     }
     else {
-        my $obj = $self->_schema->resultset($set)->find_or_new($info);
-
-        debug("\tdidn't exist in cache - %s: $campo", $obj);
+        my $obj = $self->_resultsets->{$set}->find_or_create($info);
 
         $CACHE_INSERTING->{$campo}{$codigo} = $id = $obj->id;
     };
+
+    return ($campo . '_id' => $id);
+}
+
+sub _cache_or_create_beneficiario {
+    my ($self, $info) = @_;
+
+    my $campo = 'beneficiario';
+    my $set   = 'Beneficiario';
+
+    my $created = 0;
+    my $rs      = $self->_resultsets->{$set};
+    my $codigo  = $info->{codigo};
+    my $id;
+
+    if (exists $CACHE_INSERTING->{$campo}{$codigo}){
+        $id = $CACHE_INSERTING->{$campo}{$codigo};
+        debug("\tloading from cache: $campo");
+    }
+    else {
+        my $obj = $rs->find( { codigo => $codigo } )
+          || $rs->find( { uri => $info->{uri} } );
+
+        if (!$obj) {
+            $obj = $rs->create( $info );
+            $created = 1;
+        }
+
+        $CACHE_INSERTING->{$campo}{$codigo} = $id = $obj->id;
+    }
+
+    if (!$created) {
+        $rs->find($id)->update($info);
+    }
 
     return ($campo . '_id' => $id);
 }
