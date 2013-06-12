@@ -289,10 +289,10 @@ sub _cache_or_create {
         debug("\tloading from cache: $campo");
     }
     else {
-        my $obj = $self->_resultsets->{$set}->find_or_create($info);
+        my $obj = $self->_resultsets->{$set}->create($info);
 
         $CACHE_INSERTING->{$campo}{$codigo} = $id = $obj->id;
-    };
+    }
 
     return ($campo . '_id' => $id);
 }
