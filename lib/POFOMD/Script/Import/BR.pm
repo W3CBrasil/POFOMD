@@ -108,7 +108,7 @@ sub run {
 
     my $start_time = DateTime->now;
 
-    for (my ($k, $v) = each %{ $self->_resultsets }) {
+    while (my ($k, $v) = each %{ $self->_resultsets }) {
         $self->_load_from_database($k, $v);
     }
 
