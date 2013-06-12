@@ -3,6 +3,7 @@
 <head>
 <title>[% IF dataset_text %][% dataset_text %][% END %][% IF credor.nome %][% credor.nome %][% END %] -- Para onde foi o meu dinheiro ? </title>
 <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="/static/favicon.ico" rel="icon" type="image/x-icon"/>
 
 [% IF credor.nome %]
 <meta name="description" content="Informações relativas a despesas do governo com o [% credor.nome %], baseado em dados abertos governamentais." lang="pt-BR" />
@@ -154,7 +155,8 @@ _gaq.push(['_trackPageview']);
 				</div>
 
 				<div class="span2">
-					<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.paraondefoiomeudinheiro.org.br" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+[%#					<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.paraondefoiomeudinheiro.org.br" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> %]
+
 <!-- kludge to make IE behave well, while being conformant with W3C -->
 <!--[if IE]>
 					<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.paraondefoiomeudinheiro.org.br&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
