@@ -229,50 +229,37 @@ table.tablesorter .headerSortDown {
 	background-position: 2px 13px;
 }
 
-
 div.sobre h1{
-	font-size: 14pt;	
+	font-size: 14pt;
 }
+
 div.sobre span.h1{
 	font-weight: bolder;
 }
 
 div.sobre h2{
-	font-size: 12pt;	
+	font-size: 12pt;
 	color: #444;
 }
 
-div.parceiros{
-	margin-top: 15px;
-	margin-left: 560px;
-	clear: both;
-	
-}
-
-div.parceiros .label{
+div.parceiros .label {
 	background: none;
-	text-transform: none;
 	padding: 0;
 	float: left;
 	margin: 15px 10px 0px 5px;
 	color: #444;
 }
-div.parceiros .logo{
+div.parceiros .logo {
 	float: left;
 	margin: 5px 10px;
 }
-
-div.footer-develop{
-	clear: both;	
-}
-
 
 div.footer-menu{
 	float: left;
 }
 
 div.cc{
-	position: absolute;	
+	position: absolute;
 	width: 400px;
 	float: left;
 	text-align: right;

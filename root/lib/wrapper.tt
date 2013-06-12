@@ -133,7 +133,7 @@ _gaq.push(['_trackPageview']);
                     </li>
                 </ul>
             </div>
-            <form class="form-search form-inline pull-right" method='get' action='/credores/busca' role="search">
+            <form class="form-search pull-right" method='get' action='/credores/busca' role="search">
                 <label for="busca" class="hide">Busca</label><!-- only for screenreaders -->
                 <input type="text" name="q" id="busca" placeholder="Busca por credores" class="search-query">
                 <button type="submit" class="btn btn-link"><i class="icon-search icon-white"></i></button>
@@ -162,24 +162,25 @@ _gaq.push(['_trackPageview']);
 			<div class="span12">
 				[% content %]
 			</div>
-
 		</div>
-
 	</div>
 
-	<div class="parceiros">
+    <br />
 
-		<div class="label">Parceiros:</div>
-
-		<div class="logo"><a href="http://www.w3c.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-w3c.png') %]" /></a></div>
-		<div class="logo"><a href="http://www.nic.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-nicbr.png') %]" /></a></div>
-		<div class="logo"><a href="http://www.cgi.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-cgibr.png') %]" /></a></div>
-		<div class="logo"><a href="http://br.okfn.org/" target="_blank"><img src="[% c.uri_for('/static/images/logo-okfn.png') %]" /></a></div>
-	</div>
+    <div class="row parceiros">
+        <div class="pull-right">
+            <div class="label">Parceiros:</div>
+            <div class="logo"><a href="http://www.w3c.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-w3c.png') %]" /></a></div>
+            <div class="logo"><a href="http://www.nic.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-nicbr.png') %]" /></a></div>
+            <div class="logo"><a href="http://www.cgi.br/" target="_blank"><img src="[% c.uri_for('/static/images/logo-cgibr.png') %]" /></a></div>
+            <div class="logo"><a href="http://br.okfn.org/" target="_blank"><img src="[% c.uri_for('/static/images/logo-okfn.png') %]" /></a></div>
+        </div>
+    </div>
 
 </div>
 
 <br />
+
 <footer class="footer">
 <div class="malha">
 	<div class="container">

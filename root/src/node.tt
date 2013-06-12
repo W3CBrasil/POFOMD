@@ -9,15 +9,18 @@ getNode("[% node %]");
 			<p align="center">Carregando, aguarde.</p>
 		</div>
 
-		<div id="intro" class="intro">
-		</div>
+		<div id="intro" class="intro"></div>
 
 		[% IF node %]
 		<div class="voltarpagina hide">
 		<p><a href="javascript:history.go(-1)">Voltar para página anterior</a></p>
 		</div>
 		[% END %]
+    </div>
+</div>
 
+<div class="row">
+	<div class="span12">
 		<div id="mainvis"> </div>
 
 		<div id="mainvis-description"><div class='content-fill'>
@@ -40,13 +43,17 @@ que é a comprovação de que o credor cumpriu todas as obrigações constantes 
 				<div class='text'>É o maior nível de agregação das diversas áreas de atuação do setor público. A função está relacionada com a missão institucional do órgão, por exemplo, cultura, educação, saúde, defesa, que guarda relação com os respectivos Ministérios. O primeiro quadro deste sistema apresenta os dados distribuídos nas respectivas funções de governo.</div>
 			[% END %]
 		</div></div>
+    </div>
+</div>
 
+<div class="row">
+	<div class="span12">
 		<div id="legenda" class="legenda hide">Tri = Trilhões, Bi = Bilhões, Mi = Milhões</div>
 
 		<div id="totais"><div class="total"></div></div>
-
 	</div>
 </div>
+
 <div class="row">
 	<div class="span12">
 		<div class="my-new-list"></div>
