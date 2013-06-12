@@ -27,7 +27,7 @@ requires 'FCGI::ProcManager';
 requires 'XML::Simple';
 requires 'MooseX::Types::JSON';
 
-requires 'Text::Unaccent';
+requires 'Text::Unaccent::PurePerl';
 requires 'Text::Unidecode';
 requires 'Text::CSV';
 requires 'Text::CSV_XS';

@@ -2,7 +2,7 @@ package POFOMD::Script::Import::SP;
 use Moose;
 use namespace::autoclean;
 use POFOMD ();
-use Text::Unaccent ();
+use Text::Unaccent::PurePerl ();
 use Text::CSV_XS;
 use Text2URI;
 use DateTime;
@@ -292,7 +292,7 @@ sub _cache_or_create {
 }
 
 sub _unaccent {
-    return Text::Unaccent::unac_string('UTF-8', $_[0]);
+    return Text::Unaccent::PurePerl::unac_string('UTF-8', $_[0]);
 }
 
 sub debug {
