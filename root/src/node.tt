@@ -6,7 +6,7 @@ getNode("[% node %]");
 <div class="row">
 	<div class="span12">
 		<div class="carregando">
-			<p align="center">Carregando, aguarde.</p>
+			<p class="text-center">Carregando, aguarde.</p>
 		</div>
 
 		<div id="intro" class="intro"></div>
