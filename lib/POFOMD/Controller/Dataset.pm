@@ -10,8 +10,12 @@ use POFOMD::Utils qw(formata_real formata_valor formata_float bgcolor);
 sub list : Chained('/base') : PathPart('datasets') : Args(0) {
     my ( $self, $c ) = @_;
 
-    my $gasto     = $c->model('DB::Gasto');
-    my $rs        = $c->model('DB::Dataset');
+    my $gasto = $c->model('DB::Gasto');
+    my $rs    = $c->model('DB::Dataset')->search({}, {
+        columns    => [ 'id', 'nome', 'uri' ],
+        '+columns' => [ 'periodo.ano' ],
+        join       => 'periodo',
+    });
     my @dts;
 
     my $total_all = 0;
@@ -30,30 +34,32 @@ sub list : Chained('/base') : PathPart('datasets') : Args(0) {
         # TODO : Adicionar tipo de base no dataset.
         my $type = $item->uri;
         $type =~ s/\-.*//g;
-	$type = 'estado2' if $item->uri =~ 'rio';
+        $type = 'estado2' if $item->uri =~ 'rio';
 
-	my $count =  $gasto->search({ dataset_id => $item->id })->count;
+        my $count = $gasto->search( { dataset_id => $item->id } )->count;
 
         push(
             @dts,
             {
                 dataset_id => $item->id,
-                periodo => $item->periodo->ano,
-                valor => $obj->valor,
-                total => formata_real($obj->valor),
-                items => $count / 100,
-		items_real => $count,
-                type => $type,
-                titulo => $item->nome,
-		uri => $item->uri
+                periodo    => $item->periodo->ano,
+                valor      => $obj->valor,
+                total      => formata_real( $obj->valor ),
+                items      => $count / 100,
+                items_real => $count,
+                type       => $type,
+                titulo     => $item->nome,
+                uri        => $item->uri
             }
         );
         $total_all += $obj->valor;
     }
 
-    $c->stash->{dataset_text} = 'Visão Geral';
-    $c->stash->{data} = \@dts;
-    $c->stash->{total_all} = $total_all;
+    $c->stash(
+        dataset_text => 'Visão Geral',
+        data         => \@dts,
+        total_all    => $total_all,
+    );
     $c->forward('View::JSON');
 }
 
