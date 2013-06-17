@@ -1,6 +1,7 @@
 package POFOMD::Controller::Dataset;
 use utf8;
 use Moose;
+use CHI;
 use namespace::autoclean;
 
 BEGIN { extends 'POFOMD::HandleTree' }
@@ -10,54 +11,20 @@ use POFOMD::Utils qw(formata_real formata_valor formata_float bgcolor);
 sub list : Chained('/base') : PathPart('datasets') : Args(0) {
     my ( $self, $c ) = @_;
 
-    my $gasto = $c->model('DB::Gasto');
-    my $rs    = $c->model('DB::Dataset')->search({}, {
-        columns    => [ 'id', 'nome', 'uri' ],
-        '+columns' => [ 'periodo.ano' ],
-        join       => 'periodo',
+    # TODO: integrate better with Catalyst
+    my $cache = CHI->new(
+        driver => 'FastMmap',
+        root_dir => $c->path_to('/tmp/fastmmap-cache/')->stringify,
+        cache_size => '100m',
+    );
+
+    my ($dts, $total_all) = $cache->compute('dataset_overview_list', '6 hours', sub {
+        _get_list($c)
     });
-    my @dts;
-
-    my $total_all = 0;
-    foreach my $item ( $rs->all ) {
-        my $search = $gasto->search(
-            { dataset_id => $item->id },
-            {
-                select   => [ 'dataset_id', { sum => 'valor' } ],
-                as       => [qw/dataset_id valor/],
-                group_by => 'dataset_id'
-            }
-        );
-
-        my $obj = $search->first or next;
-
-        # TODO : Adicionar tipo de base no dataset.
-        my $type = $item->uri;
-        $type =~ s/\-.*//g;
-        $type = 'estado2' if $item->uri =~ 'rio';
-
-        my $count = $gasto->search( { dataset_id => $item->id } )->count;
-
-        push(
-            @dts,
-            {
-                dataset_id => $item->id,
-                periodo    => $item->periodo->ano,
-                valor      => $obj->valor,
-                total      => formata_real( $obj->valor ),
-                items      => $count / 100,
-                items_real => $count,
-                type       => $type,
-                titulo     => $item->nome,
-                uri        => $item->uri
-            }
-        );
-        $total_all += $obj->valor;
-    }
 
     $c->stash(
         dataset_text => 'Visão Geral',
-        data         => \@dts,
+        data         => $dts,
         total_all    => $total_all,
     );
     $c->forward('View::JSON');
@@ -348,6 +315,56 @@ sub handle_DATA : Private {
 
     $c->stash->{data} = \@data;
     $c->forward('handle_TREE');
+}
+
+sub _get_list {
+    my ($c) = @_;
+    my $gasto = $c->model('DB::Gasto');
+    my $rs    = $c->model('DB::Dataset')->search({}, {
+        columns    => [ 'id', 'nome', 'uri' ],
+        '+columns' => [ 'periodo.ano' ],
+        join       => 'periodo',
+    });
+    my @dts;
+
+    my $total_all = 0;
+    foreach my $item ( $rs->all ) {
+        my $search = $gasto->search(
+            { dataset_id => $item->id },
+            {
+                select   => [ 'dataset_id', { sum => 'valor' } ],
+                as       => [qw/dataset_id valor/],
+                group_by => 'dataset_id'
+            }
+        );
+
+        my $obj = $search->first or next;
+
+        # TODO : Adicionar tipo de base no dataset.
+        my $type = $item->uri;
+        $type =~ s/\-.*//g;
+        $type = 'estado2' if $item->uri =~ 'rio';
+
+        my $count = $gasto->search( { dataset_id => $item->id } )->count;
+
+        push(
+            @dts,
+            {
+                dataset_id => $item->id,
+                periodo    => $item->periodo->ano,
+                valor      => $obj->valor,
+                total      => formata_real( $obj->valor ),
+                items      => $count / 100,
+                items_real => $count,
+                type       => $type,
+                titulo     => $item->nome,
+                uri        => $item->uri
+            }
+        );
+        $total_all += $obj->valor;
+    }
+
+    return (\@dts, $total_all);
 }
 
 __PACKAGE__->meta->make_immutable;

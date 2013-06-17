@@ -19,6 +19,8 @@ requires 'namespace::autoclean';
 requires 'Config::General';
 requires 'autodie';
 requires 'DateTime';
+requires 'CHI';
+requires 'Cache::FastMmap';
 
 requires 'Catalyst::View::TT';
 requires 'Catalyst::View::JSON';
