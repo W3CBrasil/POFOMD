@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<title>[% IF dataset_text %][% dataset_text %][% END %][% IF credor.nome %][% credor.nome %][% END %] -- Para onde foi o meu dinheiro ? </title>
+<title>[% IF dataset_text %][% dataset_text %][% END %][% IF credor.nome %][% credor.nome %][% END %] — Para onde foi o meu dinheiro? </title>
 <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
 <link href="/static/favicon.ico" rel="icon" type="image/x-icon"/>
 
@@ -13,7 +13,7 @@
 <meta name="keywords" content="orçamento, governo, ldo, despesas, dinheiro, investimento, opensource, opendata, dados, [% credor.nome %]" />
 <meta name="robots" content="index,follow" />
 
-<meta property="og:site_name" content="[% IF dataset_text %][% dataset_text %][% END %][% IF credor.nome %][% credor.nome %][% END %] -- Para onde foi o meu dinheiro ?"/>
+<meta property="og:site_name" content="[% IF dataset_text %][% dataset_text %][% END %][% IF credor.nome %][% credor.nome %][% END %] - Para onde foi o meu dinheiro?"/>
 <meta property="og:image" content="http://www.paraondefoiomeudinheiro.org.br/static/images/sc-pofomd.png"/>
 
 [% IF credor.nome %]
@@ -109,15 +109,9 @@ _gaq.push(['_trackPageview']);
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Federal <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/dataset/federal-direto-2012">Gastos direto - 2012</a></li>
-                            <li><a href="/dataset/federal-direto-2011">Gastos direto - 2011</a></li>
-                            <li><a href="/dataset/federal-direto-2010">Gastos direto - 2010</a></li>
-                            <li><a href="/dataset/federal-direto-2009">Gastos direto - 2009</a></li>
-                            <li><a href="/dataset/federal-direto-2008">Gastos direto - 2008</a></li>
-                            <li><a href="/dataset/federal-direto-2007">Gastos direto - 2007</a></li>
-                            <li><a href="/dataset/federal-direto-2006">Gastos direto - 2006</a></li>
-                            <li><a href="/dataset/federal-direto-2005">Gastos direto - 2005</a></li>
-                            <li><a href="/dataset/federal-direto-2004">Gastos direto - 2004</a></li>
+                            <li><a href="/dataset/federal-direto-2013">Gastos diretos - 2012</a></li>
+                            <li><a href="/dataset/federal-direto-2012">Gastos diretos - 2012</a></li>
+                            <li><a href="/dataset/federal-direto-2011">Gastos diretos - 2011</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -126,12 +120,6 @@ _gaq.push(['_trackPageview']);
                             <li><a href="/dataset/estado-sao-paulo-2012">São Paulo - 2012</a></li>
                             <li><a href="/dataset/estado-sao-paulo-2011">São Paulo - 2011</a></li>
                             <li><a href="/dataset/estado-sao-paulo-2010">São Paulo - 2010</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Municipal <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/dataset/municipio-sao-paulo-2011">SP - São Paulo - 2011</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -198,7 +186,7 @@ _gaq.push(['_trackPageview']);
 	<div class="container">
 		<div class="row">
 			<div class="span6">
-				<p>Para onde foi o meu dinheiro ?</p>
+				<p>Para onde foi o meu dinheiro?</p>
 				<ul>
 					<li><a href="/sobre">Sobre</a></li>
 					<li><a href="/contato">Contato</a></li>
