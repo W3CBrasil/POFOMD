@@ -62,13 +62,14 @@
 <script type="text/javascript" src="/static/js/eficiencia.js"></script>
 [% END %]
 [% IF template.variavel %]
-<script class="include" type="text/javascript" src="/static/js/jquery.jqplot.min.js"></script>
-<script class="include" type="text/javascript" src="/static/js/plugins/jqplot.highlighter.min.js"></script>
-<script class="include" type="text/javascript" src="/static/js/plugins/jqplot.cursor.min.js"></script>
-<script class="include" type="text/javascript" src="/static/js/plugins/jqplot.canvasTextRenderer.min.js"></script>
-<script class="include" type="text/javascript" src="/static/js/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
-<script class="include" type="text/javascript" src="/static/js/plugins/jqplot.dateAxisRenderer.min.js"></script>
-<script calss="include" type="text/javascript" src="/static/js/plugins/jqplot.bubbleRenderer.min.js"></script>
+<link rel="stylesheet" href="/static/css/jquery.jqplot.min.css" />
+<script type="text/javascript" src="/static/js/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jqplot.highlighter.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jqplot.cursor.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jqplot.bubbleRenderer.min.js"></script>
 [% END %]
 <script src="/static/js/search.js" type="text/javascript"></script>
 <script src="/static/js/root.js" type="text/javascript"></script>
