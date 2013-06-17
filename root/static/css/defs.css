@@ -102,3 +102,22 @@ color: #000;
 background: #ffa2a2;
 font-weight: bold;
 }
+
+/* DATASET OVERVIEW (JQPLOT) */
+
+#tooltip1 {
+	padding:5px 10px;
+	background-color: rgba(95%, 95%, 95%, 0.8);
+	border: 1px solid #e0e0e0;
+	position:absolute;
+	z-index:99;
+	display:none;
+}
+
+#chart1 {
+    height: 400px;
+}
+
+#chart1-description {
+    height: 396px;
+}

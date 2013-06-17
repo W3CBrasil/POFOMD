@@ -1,68 +1,33 @@
 [% META variavel=1 %]
 
-<style type="text/css">
-body {
-	font-family: Graublau, Georgia, serif;
-}
-
-.jqplot-target {
-	font-size: 10pt;
-	margin-left: 15px;
-}
-
-.jqplot-yaxis-label {
-	margin-left: -15px;
-	margin-right: 15px;
-}
-
-#tooltip1 {
-	padding:5px 10px;
-	background-color: rgba(95%, 95%, 95%, 0.8);
-	border: 1px solid #e0e0e0;
-	position:absolute;
-	z-index:99;
-	display:none;
-}
-
-.jqplot-bubble-point:hover{
-	cursor: hand;
-	cursor: pointer;
-}
-
-#chart1 {
-    width:700px;
-    height: 400px;
-}
-
-#chart1-description {
-    width: 210px;
-    height: 396px;
-}
-</style>
-
 <div class="row">
 	<div class="span12">
 		<div class="carregando">
 			<p class="text-center">Carregando, aguarde.</p>
 		</div>
-
-		<div id="tooltip1"></div>
-		<div id="chart1" class="jqplot-target"></div>
-
-		<div id="chart1-description"><div class='content-fill'>
-				<div class='title'>Dataset</div>
-				<div class='text'>É um conjunto de dados baseado em informações anuais sobre a execução do orçamento público.<br /><br />
-				Neste gráfico é possível verificar os dados relativos aos últimos anos em uma linha histórica e o montante total de gastos na linha vertical.<br />
-				O tamanho do círculo é baseado na quantidade de dados disponíveis para o banco de dados. Quanto maior o volume de dinheiro investido a tendência é que a quantidade de dados seja maior, pois requer mais detalhamento para oferecer uma transparência satisfatória.
-				</div>
-		</div></div>
-
-	</div>
+    </div>
 </div>
+
+<div class="row">
+    <div id="tooltip1"></div>
+    <div id="chart1" class="span8 jqplot-target"></div>
+
+    <div class="span4">
+        <div id="chart1-description"><div class='content-fill'>
+            <div class='title'>Dataset</div>
+            <div class='text'>
+                É um conjunto de dados baseado em informações anuais sobre a execução do orçamento público.<br /><br />
+                Neste gráfico é possível verificar os dados relativos aos últimos anos em uma linha histórica e o montante total de gastos na linha vertical.<br />
+                O tamanho do círculo é baseado na quantidade de dados disponíveis para o banco de dados. Quanto maior o volume de dinheiro investido a tendência é que a quantidade de dados seja maior, pois requer mais detalhamento para oferecer uma transparência satisfatória.
+            </div>
+		</div></div>
+    </div>
+</div>
+
 <br />
+
 <div class="row">
 	<div class="span12">
 		<div class="my-new-list"></div>
 	</div>
 </div>
-<script src="/static/js/functions.dataset.js" type="text/javascript"></script>
