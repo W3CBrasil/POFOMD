@@ -173,7 +173,8 @@ sub load_csv_into_db {
         my $pagamento;
 
         if ($pagamento = $pagamento_rs->find({ numero_nota_empenho => $NUMERO_DOCUMENTO_PAGAMENTO })) {
-            next if $pagamento->gastos->first->dataset_id eq $dataset_id;
+            my $gasto = $pagamento->gastos->first;
+            next if ($gasto && $gasto->dataset_id eq $dataset_id);
         }
 
         $pagamento ||= $pagamento_rs->create({
@@ -208,7 +209,7 @@ sub load_csv_into_db {
                 programa => 'Programa',
                 {
                     codigo => $CODIGO_PROGRAMA,
-                    nome   => _unaccent($NOME_PROGRAMA),
+                    nome   => $NOME_PROGRAMA,
                 }
             ),
 
@@ -216,7 +217,7 @@ sub load_csv_into_db {
                 acao => 'Acao',
                 {
                     codigo => $CODIGO_ACAO,
-                    nome   => _unaccent($NOME_ACAO),
+                    nome   => $NOME_ACAO,
                 }
             ),
 
@@ -224,7 +225,7 @@ sub load_csv_into_db {
                 despesa => 'Despesa',
                 {
                     codigo => $CODIGO_GRUPO_DESPESA,
-                    nome   => _unaccent($NOME_GRUPO_DESPESA),
+                    nome   => $NOME_GRUPO_DESPESA,
                 }
             ),
 
@@ -239,7 +240,7 @@ sub load_csv_into_db {
             $self->_cache_or_create_beneficiario(
                 {
                     codigo    => $CODIGO_FAVORECIDO,
-                    nome      => _unaccent($NOME_FAVORECIDO),
+                    nome      => $NOME_FAVORECIDO,
                     documento => $CODIGO_FAVORECIDO,
                     uri       => $t->translate( _unaccent($NOME_FAVORECIDO) ),
                 }
@@ -324,15 +325,15 @@ sub _cache_or_create_beneficiario {
         $CACHE_INSERTING->{$campo}{$codigo} = $id = $obj->id;
     }
 
-    if (!$created) {
-        $rs->find($id)->update($info);
-    }
+#    if (!$created) {
+#        $rs->find($id)->update($info);
+#    }
 
     return ($campo . '_id' => $id);
 }
 
 sub _unaccent {
-    return Text::Unaccent::PurePerl::unac_string('UTF-8', $_[0]);
+    return Text::Unaccent::PurePerl::unac_string($_[0]);
 }
 
 sub debug {
