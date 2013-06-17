@@ -20,9 +20,9 @@ getNode("[% node %]");
 </div>
 
 <div class="row">
-    <div id="mainvis" class="span8"> </div>
+    <div id="mainvis" class="span9"> </div>
 
-    <div class="span4">
+    <div class="span3">
         <div id="mainvis-description"><div class='content-fill'>
             [% IF nodetype == 'acao' %]
                 <div class='title'>Valor liquidado</div>
