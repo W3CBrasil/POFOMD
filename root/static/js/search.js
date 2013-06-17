@@ -1,21 +1,16 @@
 $(function() {
-
-	$( "li.busca a" ).click(function(e){
-		e.preventDefault();
-		$(this).parent().submit();
-	});
 	var cache = {};
-	$( "#busca" ).autocomplete({
+
+	$( "#busca" ).typeahead({
 		minLength: 2,
-		source: function( request, response ) {
-			var term = request.term;
-			if ( term in cache ) {
-				response( cache[ term ] );
+		source: function( query, response ) {
+			if ( query in cache ) {
+				response( cache[ query ] );
 				return;
 			}
-	
-			$.getJSON( "/credores/sugestao?q="+request.term, function( data, status, xhr ) {
-				cache[ term ] = data.nomes;
+
+			$.getJSON( "/credores/sugestao?q="+query, function( data, status, xhr ) {
+				cache[ query ] = data.nomes;
 				response( data.nomes );
 			});
 		}

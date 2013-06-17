@@ -126,7 +126,7 @@ _gaq.push(['_trackPageview']);
             </div>
             <form class="form-search pull-right" method='get' action='/credores/busca' role="search">
                 <label for="busca" class="hide">Busca</label><!-- only for screenreaders -->
-                <input type="text" name="q" id="busca" placeholder="Busca por credores" class="search-query">
+                <input type="text" name="q" id="busca" placeholder="Busca por credores" class="search-query" autocomplete="off">
                 <button type="submit" class="btn btn-link"><i class="icon-search icon-white"></i></button>
             </form>
         </div>
