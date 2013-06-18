@@ -166,9 +166,9 @@ sub load_csv_into_db {
         $VALOR_PAGO_DE_ANOS_ANTERIORES =~ s/\,/\./g;
 
         my $pagamento = $pagamento_rs->find_or_new({
-            numero_processo            => _unaccent($NUMERO_PROCESSO),
-            numero_nota_empenho        => _unaccent($NUMERO_NOTA_DE_EMPENHO),
-            tipo_licitacao             => _unaccent($TIPO_LICITACAO),
+            numero_processo            => $NUMERO_PROCESSO,
+            numero_nota_empenho        => $NUMERO_NOTA_DE_EMPENHO,
+            tipo_licitacao             => $TIPO_LICITACAO,
             valor_empenhado            => $VALOR_EMPENHADO,
             valor_liquidado            => $VALOR_LIQUIDADO,
             valor_pago_anos_anteriores => $VALOR_PAGO_DE_ANOS_ANTERIORES,
@@ -199,7 +199,7 @@ sub load_csv_into_db {
                 programa => 'Programa',
                 {
                     codigo => $CODIGO_PROGRAMA,
-                    nome   => _unaccent($NOME_PROGRAMA),
+                    nome   => $NOME_PROGRAMA,
                 }
             ),
 
@@ -207,7 +207,7 @@ sub load_csv_into_db {
                 acao => 'Acao',
                 {
                     codigo => $CODIGO_ACAO,
-                    nome   => _unaccent($NOME_ACAO),
+                    nome   => $NOME_ACAO,
                 }
             ),
 
@@ -215,7 +215,7 @@ sub load_csv_into_db {
                 beneficiario => 'Beneficiario',
                 {
                     codigo    => $CODIGO_CREDOR,
-                    nome      => _unaccent($NOME_CREDOR),
+                    nome      => $NOME_CREDOR,
                     documento => '0',
                     uri       => $t->translate( _unaccent($NOME_CREDOR) ),
                 }
@@ -225,7 +225,7 @@ sub load_csv_into_db {
                 despesa => 'Despesa',
                 {
                     codigo => $CODIGO_GRUPO_DE_DESPESA,
-                    nome   => _unaccent($NOME_GRUPO_DE_DESPESA),
+                    nome   => $NOME_GRUPO_DE_DESPESA,
                 }
             ),
 
@@ -242,8 +242,8 @@ sub load_csv_into_db {
             $self->_cache_or_create(
                 recurso => 'Recurso',
                 {
-                    codigo => _unaccent($CODIGO_FONTE_DE_RECURSOS),
-                    nome   => _unaccent($NOME_FONTE_DE_RECURSOS),
+                    codigo => $CODIGO_FONTE_DE_RECURSOS,
+                    nome   => $NOME_FONTE_DE_RECURSOS,
                 }
             ),
 

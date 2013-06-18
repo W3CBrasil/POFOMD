@@ -12,6 +12,7 @@ use utf8;
 with 'MooseX::Getopt::GLD';
 
 my $CACHE_INSERTING = {};
+my $UPDATE_FH;
 
 has _csv_obj => (
     is      => 'ro',
@@ -112,11 +113,13 @@ sub run {
         $self->_load_from_database($k, $v);
     }
 
+    open my $UPDATE_FH, '>>', 'update.log';
     open my $fh, '<:encoding(iso-8859-1)', $self->dataset;
 
     $self->load_csv_into_db($fh);
 
     close $fh;
+    close $UPDATE_FH;
 
     my $end_time = DateTime->now;
 
@@ -325,9 +328,11 @@ sub _cache_or_create_beneficiario {
         $CACHE_INSERTING->{$campo}{$codigo} = $id = $obj->id;
     }
 
-#    if (!$created) {
-#        $rs->find($id)->update($info);
-#    }
+    if (!$created) {
+        my $value = Dumper($info);
+        print $UPDATE_FH "$id => $value";
+        #$rs->find($id)->update($info);
+    }
 
     return ($campo . '_id' => $id);
 }
