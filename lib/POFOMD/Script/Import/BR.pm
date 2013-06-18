@@ -8,6 +8,7 @@ use Text2URI;
 use DateTime;
 use autodie;
 use utf8;
+use Data::Dumper;
 
 with 'MooseX::Getopt::GLD';
 
