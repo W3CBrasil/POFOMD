@@ -114,7 +114,7 @@ sub run {
         $self->_load_from_database($k, $v);
     }
 
-    open my $UPDATE_FH, '>>', 'update.log';
+    open $UPDATE_FH, '>>', 'update.log';
     open my $fh, '<:encoding(iso-8859-1)', $self->dataset;
 
     $self->load_csv_into_db($fh);
