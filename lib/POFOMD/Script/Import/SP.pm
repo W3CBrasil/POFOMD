@@ -186,7 +186,10 @@ sub load_csv_into_db {
 
         my $pagamento;
 
-        if ($pagamento = $pagamento_rs->find({ numero_nota_empenho => $NUMERO_NOTA_DE_EMPENHO })) {
+        if (
+            ($pagamento = $pagamento_rs->find({ numero_nota_empenho => $NUMERO_NOTA_DE_EMPENHO })) ||
+            ($pagamento = $pagamento_rs->find({ numero_processo     => $NUMERO_PROCESSO }))
+        ) {
             my $gasto = $pagamento->gastos->first;
             next if ($gasto && $gasto->dataset_id eq $dataset_id);
         }
