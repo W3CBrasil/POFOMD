@@ -8,10 +8,12 @@ use Text2URI;
 use DateTime;
 use autodie;
 use utf8;
+use Data::Dumper;
 
 with 'MooseX::Getopt::GLD';
 
 my $CACHE_INSERTING = {};
+my $UPDATE_FH;
 
 has _csv_obj => (
     is      => 'ro',
@@ -36,6 +38,19 @@ has _schema => (
     is      => 'ro',
     isa     => 'DBIx::Class::Schema',
     default => sub { POFOMD->model('DB')->schema },
+);
+
+has _resultsets => (
+    is      => 'ro',
+    isa     => 'HashRef',
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        return +{
+            map { $_ => $self->_schema->resultset($_) }
+              qw/Funcao Subfuncao Programa Acao Beneficiario Despesa Gestora Recurso/
+        };
+    },
 );
 
 has year => (
@@ -97,13 +112,17 @@ sub run {
 
     my $start_time = DateTime->now;
 
-    $self->_load_from_database($_) for qw /Funcao Subfuncao Programa Acao Beneficiario Despesa Gestora Recurso/;
+    while (my ($k, $v) = each %{ $self->_resultsets }) {
+        $self->_load_from_database($k, $v);
+    }
 
+    open $UPDATE_FH, '>>', 'update_sp.log';
     open my $fh, '<:encoding(iso-8859-1)', $self->dataset;
 
     $self->load_csv_into_db($fh);
 
     close $fh;
+    close $UPDATE_FH;
 
     my $end_time = DateTime->now;
 
@@ -165,7 +184,14 @@ sub load_csv_into_db {
         $VALOR_LIQUIDADO =~ s/\,/\./g;
         $VALOR_PAGO_DE_ANOS_ANTERIORES =~ s/\,/\./g;
 
-        my $pagamento = $pagamento_rs->find_or_new({
+        my $pagamento;
+
+        if ($pagamento = $pagamento_rs->find({ numero_nota_empenho => $NUMERO_NOTA_DE_EMPENHO })) {
+            my $gasto = $pagamento->gastos->first;
+            next if ($gasto && $gasto->dataset_id eq $dataset_id);
+        }
+
+        $pagamento ||= $pagamento_rs->create({
             numero_processo            => $NUMERO_PROCESSO,
             numero_nota_empenho        => $NUMERO_NOTA_DE_EMPENHO,
             tipo_licitacao             => $TIPO_LICITACAO,
@@ -174,9 +200,7 @@ sub load_csv_into_db {
             valor_pago_anos_anteriores => $VALOR_PAGO_DE_ANOS_ANTERIORES,
         });
 
-        debug("\t%s: pagamento", $pagamento);
-
-        my $obj = $gasto_rs->find_or_new({
+        my $obj = $gasto_rs->create({
             dataset_id => $dataset_id,
 
             $self->_cache_or_create(
@@ -211,8 +235,7 @@ sub load_csv_into_db {
                 }
             ),
 
-            $self->_cache_or_create(
-                beneficiario => 'Beneficiario',
+            $self->_cache_or_create_beneficiario(
                 {
                     codigo    => $CODIGO_CREDOR,
                     nome      => $NOME_CREDOR,
@@ -250,7 +273,7 @@ sub load_csv_into_db {
             valor => $VALOR_LIQUIDADO
         });
 
-        debug("$line - %s", $obj);
+        debug("$line - %s");
         debug();
     }
 }
@@ -281,12 +304,46 @@ sub _cache_or_create {
         debug("\tloading from cache: $campo");
     }
     else {
-        my $obj = $self->_schema->resultset($set)->find_or_new($info);
-
-        debug("\tdidn't exist in cache - %s: $campo", $obj);
+        my $obj = $self->_resultsets->{$set}->create($info);
 
         $CACHE_INSERTING->{$campo}{$codigo} = $id = $obj->id;
-    };
+    }
+
+    return ($campo . '_id' => $id);
+}
+
+sub _cache_or_create_beneficiario {
+    my ($self, $info) = @_;
+
+    my $campo = 'beneficiario';
+    my $set   = 'Beneficiario';
+
+    my $created = 0;
+    my $rs      = $self->_resultsets->{$set};
+    my $codigo  = $info->{codigo};
+    my $id;
+
+    if (exists $CACHE_INSERTING->{$campo}{$codigo}){
+        $id = $CACHE_INSERTING->{$campo}{$codigo};
+        debug("\tloading from cache: $campo");
+    }
+    else {
+        my $obj = $rs->find( { codigo => $codigo } )
+          || $rs->find( { uri => $info->{uri} } );
+
+        if (!$obj) {
+            $obj = $rs->create( $info );
+            $created = 1;
+        }
+
+        $CACHE_INSERTING->{$campo}{$codigo} = $id = $obj->id;
+    }
+
+    if (!$created) {
+        my $value = Dumper($info);
+        print $UPDATE_FH "$id => $value";
+        #$rs->find($id)->update($info);
+    }
 
     return ($campo . '_id' => $id);
 }
