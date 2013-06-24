@@ -40,12 +40,12 @@
 		</tr>
 [% END %]
 	</tbody>
-	<tfooter>
+	<tbody class="footer">
 		<tr>
-			<td class='total' colspan='5' align='right'><b>TOTAL</b></td>
-			<td class='data'>[% credor.total %]</td>
+			<td class='total right' colspan='5'>TOTAL</td>
+			<td class='data right'>[% credor.total %]</td>
 		</tr>
-	</tfooter>
+	</tbody>
 </table>
 
 <div class="table-paginator">
