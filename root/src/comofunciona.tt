@@ -12,19 +12,24 @@
 			$(".videos .item").hide();
 		}
 		
+		function scrollTo(id){
+			$('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
+		}
 		$(".items .item").click(function(){
 			toggleVideos();
-			$(".videos ."+$(this).attr("id")).show("slow");
-			var h = $(".videos ."+$(this).attr("id")).find("iframe").height();
-			$(".videos").height(h);
+			$(".videos ."+$(this).attr("id")).show("fast",function(){
+				var h = $(".videos ."+$(this).attr("id")).find("iframe").height();
+				$(".videos").height(h);
+				scrollTo("videos");
+			});
 		});
 	});
 </script>
 <div class='comofunciona'>
 
-	<h3>Um jeito simples de conhecer o orçamento público</h3>
+	<h1>Um jeito simples de conhecer o orçamento público</h1>
 
-	<div class="videos">
+	<div class="videos" id="videos">
 		<div class="item importancia-orcamento row-fluid">
 			<div class="span7">
 				<div class="video">

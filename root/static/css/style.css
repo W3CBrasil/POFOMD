@@ -215,7 +215,8 @@ table.tablesorter .headerSortDown {
 	background-position: 2px 13px;
 }
 
-div.sobre h1{
+div.sobre h1,
+div.comofunciona h1{
 	font-size: 14pt;
 }
 
@@ -324,6 +325,7 @@ table.credores td.total{
 .comofunciona .items .item .titulo{
 	font-weight: bolder;
 	font-size: 1.1em;
+	min-height: 45px;
 }
 .comofunciona .items .item .subtitulo{
 	font-weight: bolder;
@@ -333,15 +335,19 @@ table.credores td.total{
 .comofunciona .items .item .descricao{
 	padding: 5px 10px;
 }
-.comofunciona .videos #importancia-orcamento .titulo{
+.comofunciona .items #importancia-orcamento .titulo,
+.comofunciona .items .importancia-orcamento .titulo{
 	color: #5484b3;
 }
-.comofunciona .videos #ppa .titulo{
+.comofunciona .items #ppa .titulo,
+.comofunciona .videos .ppa .titulo{
 	color: #b02b00;
 }
-.comofunciona .videos #ldo .titulo{
+.comofunciona .items #ldo .titulo,
+.comofunciona .videos .ldo .titulo{
 	color: #228522;
 }
-.comofunciona .videos #loa .titulo{
+.comofunciona .items #loa .titulo,
+.comofunciona .videos .loa .titulo{
 	color: #015429;
 }
