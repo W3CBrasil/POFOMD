@@ -1,6 +1,8 @@
 <script type="text/javascript"> 
 	$(document).ready(function(){ 
 	
+		$(".page-header .row .span2").append('<div class="banner-orcamento"><a href="/comofunciona"><img src="/static/images/banner-orcamento.png" border="0"></a></div>');
+	
 		function toggleVideos(){
 			var iframes = document.getElementsByTagName("iframe");
 			var i = 0;
@@ -17,17 +19,18 @@
 		}
 		$(".items .item").click(function(){
 			toggleVideos();
+			var obj = this;
 			$(".videos ."+$(this).attr("id")).show("fast",function(){
-				var h = $(".videos ."+$(this).attr("id")).find("iframe").height();
+				var h = $(".videos ."+$(obj).attr("id")).find("iframe").height();
 				$(".videos").height(h);
-				scrollTo("videos");
+				scrollTo("top-videos");
 			});
 		});
 	});
 </script>
 <div class='comofunciona'>
 
-	<h1>Um jeito simples de conhecer o orçamento público</h1>
+	<h1 id="top-videos">Um jeito simples de conhecer o orçamento público</h1>
 
 	<div class="videos" id="videos">
 		<div class="item importancia-orcamento row-fluid">

@@ -254,7 +254,11 @@ div.cc{
 	margin-left: 570px;
 }
 .page-header img.rnsp{
-	margin-left: 220px;
+	margin-left: 18%;
+}
+
+.page-header .banner-orcamento{
+	margin-top: 10px;
 }
 
 table.credores thead th{
