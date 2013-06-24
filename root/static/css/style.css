@@ -9,6 +9,9 @@ a:hover{
 	text-decoration: underline;
 }
 
+.clear{
+	clear: both;
+}
 
 #treemap { 
 width: auto;
@@ -288,6 +291,21 @@ table.credores td.total{
 
 .comofunciona .videos .item .share{
 	font-weight: bolder;
+}
+.comofunciona .videos .item .share .twitter{
+	margin-top: 15px;
+}
+
+.comofunciona .videos .item .info h1{
+	font-size: 1.8em;
+}
+
+.comofunciona .creditos{
+	margin-top: 15px;
+}
+
+.comofunciona .items {
+	clear: both;
 }
 
 .comofunciona .items .item{

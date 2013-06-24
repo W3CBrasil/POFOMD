@@ -20,14 +20,16 @@
 </script>
 <div class='comofunciona'>
 
+	<h1>Um jeito simples de conhecer o orçamento público</h1>
+
 	<div class="videos">
-		<div class="item importancia-orcamento">
-			<div class="span8">
+		<div class="item importancia-orcamento row-fluid">
+			<div class="span7">
 				<div class="video">
 					<iframe name="youtube-player-importancia" src="http://www.youtube.com/embed/u37F1fBwvEU?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid137284" width="636" height="490"></iframe>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="span5">
 				<div class="info">
 					<div class="titulo">
 						<h1>A importância do orçamento</h1>
@@ -44,14 +46,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="item ppa">
-			<div class="span8">
+		<div class="item ppa row-fluid">
+			<div class="span7">
 				<div class="video">
 					<iframe name="youtube-player-ppa" src="http://www.youtube.com/embed/hG1Vd_SsgCc?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid846420" width="636" height="490"></iframe>
 				</div>
 			</div>
-			<div class="info span4">
+			<div class="info span5">
 				<div class="titulo">
 					<h1>Plano Plurianual</h1>
 				</div>
@@ -65,14 +68,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="item ldo">
-			<div class="span8">
+		<div class="item ldo row-fluid">
+			<div class="span7">
 				<div class="video">
 					<iframe name="youtube-player-ldo" src="http://www.youtube.com/embed/Q66ZSkBLKr0?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid823440" width="636" height="490"></iframe>
 				</div>
 			</div>
-			<div class="info span4">
+			<div class="info span5">
 				<div class="titulo">
 					<h1>Lei de Diretrizes Orçamentárias</h1>
 				</div>
@@ -86,14 +90,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="item loa">
-			<div class="span8">
+		<div class="item loa row-fluid">
+			<div class="span7">
 				<div class="video">
 					<iframe name="youtube-player-loa" src="http://www.youtube.com/embed/CWUNV7wOwYo?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid250707" width="636" height="490"></iframe>
 				</div>
 			</div>
-			<div class="info span4">
+			<div class="info span5">
 				<div class="titulo">
 					<h1>Lei Orçamentária Anual</h1>
 				</div>
@@ -107,8 +112,10 @@
 					</div>
 				</div>
 			</div>
+			<div class="clear"></div>
 		</div>
 	</div>
+	<div class="clear"></div>
 
 	<div class="items row-fluid">
 		<div class="item span3" id="importancia-orcamento">
