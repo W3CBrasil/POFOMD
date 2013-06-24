@@ -285,6 +285,19 @@ table.credores td.total{
 	font-weight: bolder;	
 }
 
+table.credores tbody tr.even td{
+	background-color:#f9f9f9;
+}
+table.credores tbody tr td{
+	padding: 2px 5px;
+}
+table.credores tbody tr td.right{
+	text-align: right;
+}
+table.credores tbody tr td.center{
+	text-align: center;
+}
+
 .comofunciona .videos{
 	margin-bottom: 15px;
 }
@@ -360,4 +373,15 @@ table.credores td.total{
 .comofunciona .items #loa .titulo,
 .comofunciona .videos .loa .titulo{
 	color: #015429;
+}
+
+.table-paginator,
+.social-links{
+	text-align: center;
+}
+.social-links{
+	margin-top: 10px;
+}
+.table-paginator{
+	margin-bottom: 10px;
 }
