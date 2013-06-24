@@ -33,6 +33,7 @@ sub faq : Chained('base') Args(0) { }
 sub sobre : Chained('base') Args(0) { } 
 sub contato : Chained('base') Args(0) { }
 sub todo : Chained('base') Args(0) { }
+sub comofunciona : Chained('base') Args(0) { }
 
 sub root : Chained('base') PathPart('') Args(0) { 
     my ($self, $c) = @_;
