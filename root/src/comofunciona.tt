@@ -111,7 +111,7 @@
 	</div>
 
 	<div class="items row-fluid">
-		<div class="item span3" id="importancia-orcamento>
+		<div class="item span3" id="importancia-orcamento">
 			<div class="titulo">A importância do orçamento</div>
 			<div class="imagem"><img src="/static/images/box-importancia-orcamento.jpg"></div>
 			<div class="subtitulo">Planejar e realizar</div>
