@@ -271,3 +271,43 @@ table.credores td.total{
 	font-weight: bolder;	
 }
 
+.comofunciona .videos .item{
+	display: none;
+}
+
+.comofunciona .videos .item .video{
+	position: relative;
+}
+
+.comofunciona .videos .item .video iframe{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.comofunciona .videos .item .share{
+	font-weight: bolder;
+}
+
+.comofunciona .items .item{
+	background-color: #f0f0f0;
+	height: 350px;
+}
+.comofunciona .items .item:hover{
+	cursor: hand;
+	cursor: pointer;
+}
+
+.comofunciona .items .item .titulo{
+	font-weight: bolder;
+	font-size: 1.1em;
+}
+.comofunciona .items .item .subtitulo{
+	font-weight: bolder;
+}
+.comofunciona .items .item .titulo,
+.comofunciona .items .item .subtitulo,
+.comofunciona .items .item .descricao{
+	padding: 2px 15px;
+}

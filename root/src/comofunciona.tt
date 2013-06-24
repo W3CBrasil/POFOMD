@@ -1,30 +1,55 @@
-
+<script type="text/javascript"> 
+	$(document).ready(function(){ 
+	
+		function toggleVideos(){
+			var iframes = document.getElementsByTagName("iframe");
+			var i = 0;
+			while(iframes[i]){
+				var iframe = iframes[i].contentWindow;
+				iframe.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+				i++;
+			}
+			$(".videos .item").hide();
+		}
+		
+		$(".items .item").click(function(){
+			toggleVideos();
+			$(".videos ."+$(this).attr("id")).show("slow");
+		});
+	});
+</script>
 <div class='comofunciona'>
 
 	<div class="videos">
-		<div class="item orcamento">
-			<div class="video span8">
-				<iframe name="youtube-player-importancia" src="http://www.youtube.com/embed/u37F1fBwvEU?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid137284"></iframe>
-			</div>
-			<div class="info span4">
-				<div class="titulo">
-					<h1>A importância do orçamento</h1>
+		<div class="item importancia-orcamento">
+			<div class="span8">
+				<div class="video">
+					<iframe name="youtube-player-importancia" src="http://www.youtube.com/embed/u37F1fBwvEU?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid137284" width="636" height="490"></iframe>
 				</div>
-				<div class="share">
-					Compartilhe este vídeo
-					<div class="twitter">
-						<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1371247185.html#_=1372084465836&amp;count=horizontal&amp;id=twitter-widget-2&amp;lang=en&amp;original_referer=http%3A%2F%2Fwww12.senado.leg.br%2Forcamentofacil&amp;size=m&amp;text=Senado%20Federal%20-%20Or%C3%A7amento%20F%C3%A1cil&amp;url=http%3A%2F%2Fwww12.senado.leg.br%2Forcamentofacil&amp;via=SeuTwitter" class="twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 110px; height: 20px;"></iframe>
-						<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			</div>
+			<div class="span4">
+				<div class="info">
+					<div class="titulo">
+						<h1>A importância do orçamento</h1>
 					</div>
-					<div class="facebook">
-						<iframe class="facebook-like-button" src="http://www.facebook.com/plugins/like.php?href=http://www12.senado.leg.br/orcamentofacil&amp;;layout=standard&amp;show_faces=false&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=25&amp;locale=pt_BR" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+					<div class="share">
+						Compartilhe este vídeo
+						<div class="twitter">
+							<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1371247185.html#_=1372084465836&amp;count=horizontal&amp;id=twitter-widget-2&amp;lang=en&amp;original_referer=http%3A%2F%2Fwww12.senado.leg.br%2Forcamentofacil&amp;size=m&amp;text=Senado%20Federal%20-%20Or%C3%A7amento%20F%C3%A1cil&amp;url=http%3A%2F%2Fwww12.senado.leg.br%2Forcamentofacil&amp;via=SeuTwitter" class="twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 110px; height: 20px;"></iframe>
+							<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+						</div>
+						<div class="facebook">
+							<iframe class="facebook-like-button" src="http://www.facebook.com/plugins/like.php?href=http://www12.senado.leg.br/orcamentofacil&amp;;layout=standard&amp;show_faces=false&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=25&amp;locale=pt_BR" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="item ppa">
-			<div class="video span8">
-				<iframe name="youtube-player-ppa" src="http://www.youtube.com/embed/hG1Vd_SsgCc?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid846420"></iframe>
+			<div class="span8">
+				<div class="video">
+					<iframe name="youtube-player-ppa" src="http://www.youtube.com/embed/hG1Vd_SsgCc?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid846420" width="636" height="490"></iframe>
+				</div>
 			</div>
 			<div class="info span4">
 				<div class="titulo">
@@ -42,8 +67,10 @@
 			</div>
 		</div>
 		<div class="item ldo">
-			<div class="video span8">
-				<iframe name="youtube-player-ldo" src="http://www.youtube.com/embed/Q66ZSkBLKr0?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid823440"></iframe>
+			<div class="span8">
+				<div class="video">
+					<iframe name="youtube-player-ldo" src="http://www.youtube.com/embed/Q66ZSkBLKr0?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid823440" width="636" height="490"></iframe>
+				</div>
 			</div>
 			<div class="info span4">
 				<div class="titulo">
@@ -61,8 +88,10 @@
 			</div>
 		</div>
 		<div class="item loa">
-			<div class="video span8">
-				<iframe name="youtube-player-loa" src="http://www.youtube.com/embed/CWUNV7wOwYo?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid250707"></iframe>
+			<div class="span8">
+				<div class="video">
+					<iframe name="youtube-player-loa" src="http://www.youtube.com/embed/CWUNV7wOwYo?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid250707" width="636" height="490"></iframe>
+				</div>
 			</div>
 			<div class="info span4">
 				<div class="titulo">
@@ -82,25 +111,25 @@
 	</div>
 
 	<div class="items row-fluid">
-		<div class="item span3">
+		<div class="item span3" id="importancia-orcamento>
 			<div class="titulo">A importância do orçamento</div>
 			<div class="imagem"><img src="/static/images/box-importancia-orcamento.jpg"></div>
 			<div class="subtitulo">Planejar e realizar</div>
 			<div class="descricao">Você sabe o que o orçamento público tem a ver com o funcionamento de uma cidade? Ele define as prioridades na aplicação dos recursos que o governo arrecada para garantir o bem estar da sociedade.</div>
 		</div>
-		<div class="item span3">
+		<div class="item span3" id="ppa">
 			<div class="titulo">Plano Plurianual</div>
 			<div class="imagem"><img src="/static/images/box-ppa.jpg"></div>
 			<div class="subtitulo">Projetar com antecedência</div>
 			<div class="descricao">Para oferecer bens e serviços, realizar obras e manter programas sociais, o governo precisa planejar com antecedência o que deve ser feito. Organiza os pedidos da sociedade e submete aos parlamentares.</div>
 		</div>
-		<div class="item span3">
+		<div class="item span3" id="ldo">
 			<div class="titulo">Lei de Diretrizes Orçamentárias</div>
 			<div class="imagem"><img src="/static/images/box-ldo.jpg"></div>
 			<div class="subtitulo">Ajustar a cada ano</div>
 			<div class="descricao">As mudanças que ocorrem ano a ano exigem que o planejamento seja ajustado. Os governantes propõem as regras, que são aprovadas pelos parlamentares. É a única lei que impede o recesso do Congresso.</div>
 		</div>
-		<div class="item span3">
+		<div class="item span3" id="loa">
 			<div class="titulo">Lei Orçamentárias Anual</div>
 			<div class="imagem"><img src="/static/images/box-loa.jpg"></div>
 			<div class="subtitulo">Colocar em prática</div>
