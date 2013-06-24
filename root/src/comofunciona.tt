@@ -15,18 +15,20 @@
 		$(".items .item").click(function(){
 			toggleVideos();
 			$(".videos ."+$(this).attr("id")).show("slow");
+			var h = $(".videos ."+$(this).attr("id")).find("iframe").height();
+			$(".videos").height(h);
 		});
 	});
 </script>
 <div class='comofunciona'>
 
-	<h1>Um jeito simples de conhecer o orçamento público</h1>
+	<h3>Um jeito simples de conhecer o orçamento público</h3>
 
 	<div class="videos">
 		<div class="item importancia-orcamento row-fluid">
 			<div class="span7">
 				<div class="video">
-					<iframe name="youtube-player-importancia" src="http://www.youtube.com/embed/u37F1fBwvEU?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid137284" width="636" height="490"></iframe>
+					<iframe name="youtube-player-importancia" src="http://www.youtube.com/embed/u37F1fBwvEU?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid137284" width="636" height="390"></iframe>
 				</div>
 			</div>
 			<div class="span5">
@@ -51,7 +53,7 @@
 		<div class="item ppa row-fluid">
 			<div class="span7">
 				<div class="video">
-					<iframe name="youtube-player-ppa" src="http://www.youtube.com/embed/hG1Vd_SsgCc?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid846420" width="636" height="490"></iframe>
+					<iframe name="youtube-player-ppa" src="http://www.youtube.com/embed/hG1Vd_SsgCc?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid846420" width="636" height="390"></iframe>
 				</div>
 			</div>
 			<div class="info span5">
@@ -73,7 +75,7 @@
 		<div class="item ldo row-fluid">
 			<div class="span7">
 				<div class="video">
-					<iframe name="youtube-player-ldo" src="http://www.youtube.com/embed/Q66ZSkBLKr0?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid823440" width="636" height="490"></iframe>
+					<iframe name="youtube-player-ldo" src="http://www.youtube.com/embed/Q66ZSkBLKr0?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid823440" width="636" height="390"></iframe>
 				</div>
 			</div>
 			<div class="info span5">
@@ -95,7 +97,7 @@
 		<div class="item loa row-fluid">
 			<div class="span7">
 				<div class="video">
-					<iframe name="youtube-player-loa" src="http://www.youtube.com/embed/CWUNV7wOwYo?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid250707" width="636" height="490"></iframe>
+					<iframe name="youtube-player-loa" src="http://www.youtube.com/embed/CWUNV7wOwYo?enablejsapi=1&amp;rel=0&amp;wmode=opaque" frameborder="0" allowfullscreen="" id="fitvid250707" width="636" height="390"></iframe>
 				</div>
 			</div>
 			<div class="info span5">

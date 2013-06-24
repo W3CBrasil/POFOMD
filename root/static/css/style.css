@@ -274,6 +274,10 @@ table.credores td.total{
 	font-weight: bolder;	
 }
 
+.comofunciona .videos{
+	margin-bottom: 15px;
+}
+
 .comofunciona .videos .item{
 	display: none;
 }
@@ -310,7 +314,7 @@ table.credores td.total{
 
 .comofunciona .items .item{
 	background-color: #f0f0f0;
-	height: 350px;
+	min-height: 28em;
 }
 .comofunciona .items .item:hover{
 	cursor: hand;
@@ -327,5 +331,17 @@ table.credores td.total{
 .comofunciona .items .item .titulo,
 .comofunciona .items .item .subtitulo,
 .comofunciona .items .item .descricao{
-	padding: 2px 15px;
+	padding: 5px 10px;
+}
+.comofunciona .videos #importancia-orcamento .titulo{
+	color: #5484b3;
+}
+.comofunciona .videos #ppa .titulo{
+	color: #b02b00;
+}
+.comofunciona .videos #ldo .titulo{
+	color: #228522;
+}
+.comofunciona .videos #loa .titulo{
+	color: #015429;
 }
