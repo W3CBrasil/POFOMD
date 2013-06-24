@@ -5,8 +5,6 @@
 
 <p>Informações relativas ao credor, baseado em dados abertos disponibilizados por diversos governos sobre a execução orçamentária.</p>
 
-<br/><br/>
-
 <div class="table-paginator">
 	[% INCLUDE pager.tt pager=gastos.pager %]
 </div>
@@ -34,8 +32,8 @@
 	[% END %]
 		<tr class="[% class %] ">
 			<td class='data'><a href="/dataset/[% item.dataset.uri %]">[% item.dataset.nome %] [% item.dataset.periodo.ano %]</a></td>
-			<td class='data'>[% item.funcao.nome %]</td>
-			<td class='data'>[% item.subfuncao.nome %]</td>
+			<td class='data small center'>[% item.funcao.nome %]</td>
+			<td class='data small center'>[% item.subfuncao.nome %]</td>
 			<td class='data'>[% item.programa.nome %]</td>
 			<td class='data'><a href="/dataset/[% item.dataset.uri %]/[% item.funcao_id %]/[% item.subfuncao_id %]/[% item.programa_id %]/[% item.acao_id %]">[% item.acao.nome %]</a></td>
 			<td class='data right' width='120'>[% item.total %]</td>
