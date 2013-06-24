@@ -139,12 +139,12 @@ _gaq.push(['_trackPageview']);
 		<div class="page-header">
 
 			<div class="row">
-				<div class="span10">
+				<div class="span9">
                     <a href="/"><img src="[% c.uri_for('/static/images/logo-pofomd-novo.png') %]" class="pofomd" alt="Para onde foi o meu dinheiro?" /></a>
                     <img src="[% c.uri_for('/static/images/logo-rnsp.png') %]" class='rnsp' alt="Rede Nossa São Paulo" />
 				</div>
 
-				<div class="span2">
+				<div class="span3">
 [%#					<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.paraondefoiomeudinheiro.org.br" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> %]
 
 <!-- kludge to make IE behave well, while being conformant with W3C -->
