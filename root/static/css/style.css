@@ -79,7 +79,7 @@ padding: 20px 20px;
 	width: 200px;
 	padding: 0px 10px;
 	font-size: 14pt;
-    	-moz-border-radius: 5px;
+   	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
 
@@ -259,6 +259,12 @@ div.cc{
 
 .page-header .banner-orcamento{
 	margin-top: 10px;
+	background-color: #fff;
+	border: 1px solid #f0f0f0;
+	padding: 4px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
 }
 
 table.credores thead th{
@@ -340,7 +346,7 @@ table.credores td.total{
 	padding: 5px 10px;
 }
 .comofunciona .items #importancia-orcamento .titulo,
-.comofunciona .items .importancia-orcamento .titulo{
+.comofunciona .videos .importancia-orcamento .titulo{
 	color: #5484b3;
 }
 .comofunciona .items #ppa .titulo,

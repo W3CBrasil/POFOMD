@@ -1,8 +1,6 @@
 <script type="text/javascript"> 
 	$(document).ready(function(){ 
 	
-		$(".page-header .row .span2").append('<div class="banner-orcamento"><a href="/comofunciona"><img src="/static/images/banner-orcamento.png" border="0"></a></div>');
-	
 		function toggleVideos(){
 			var iframes = document.getElementsByTagName("iframe");
 			var i = 0;

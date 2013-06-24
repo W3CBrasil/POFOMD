@@ -140,7 +140,7 @@ _gaq.push(['_trackPageview']);
 
 			<div class="row">
 				<div class="span10">
-                    <img src="[% c.uri_for('/static/images/logo-pofomd-novo.png') %]" class="pofomd" alt="Para onde foi o meu dinheiro?" />
+                    <a href="/"><img src="[% c.uri_for('/static/images/logo-pofomd-novo.png') %]" class="pofomd" alt="Para onde foi o meu dinheiro?" /></a>
                     <img src="[% c.uri_for('/static/images/logo-rnsp.png') %]" class='rnsp' alt="Rede Nossa São Paulo" />
 				</div>
 
@@ -155,6 +155,7 @@ _gaq.push(['_trackPageview']);
 <!--[if !IE]>-->
 					<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.paraondefoiomeudinheiro.org.br&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" style="border:none; overflow:hidden; width:150px; height:21px;"></iframe>
 <!--<![endif]-->
+					<div class="banner-orcamento"><a href="/comofunciona"><img src="/static/images/banner-orcamento.png" border="0"></a></div>
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@
 <br/><br/>
 
 [% INCLUDE pager.tt pager=gastos.pager %]
+[% class = "even" %]
 
 <table class='credores'>
 	<thead>
@@ -20,19 +21,24 @@
 			<th>Valor</th>
 		</tr>
 	</thead>
+	<tbody>
 
 [% FOREACH item IN gastos.all %]
-	<tbody>
-		<tr>
+	[% IF class == "even" %]
+	 	[% class = "odd" %]
+	[% ELSE %]
+	 	[% class = "even" %]
+	[% END %]
+		<tr class="[% class %] ">
 			<td class='data'><a href="/dataset/[% item.dataset.uri %]">[% item.dataset.nome %] [% item.dataset.periodo.ano %]</a></td>
 			<td class='data'>[% item.funcao.nome %]</td>
 			<td class='data'>[% item.subfuncao.nome %]</td>
 			<td class='data'>[% item.programa.nome %]</td>
 			<td class='data'><a href="/dataset/[% item.dataset.uri %]/[% item.funcao_id %]/[% item.subfuncao_id %]/[% item.programa_id %]/[% item.acao_id %]">[% item.acao.nome %]</a></td>
-			<td class='data' width='120'>[% item.total %]</td>
+			<td class='data right' width='120'>[% item.total %]</td>
 		</tr>
-	</tbody>
 [% END %]
+	</tbody>
 	<tfooter>
 		<tr>
 			<td class='total' colspan='5' align='right'><b>TOTAL</b></td>
