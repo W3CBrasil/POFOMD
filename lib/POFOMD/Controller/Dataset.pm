@@ -89,7 +89,6 @@ sub data : Chained('year') CaptureArgs(0) {
 
 sub data_root : Chained('data') : PathPart('') Args(0) {
     my ( $self, $c ) = @_;
-    my @data;
 
     # TODO: integrate better with Catalyst
     my $cache = CHI->new(
@@ -98,7 +97,7 @@ sub data_root : Chained('data') : PathPart('') Args(0) {
         cache_size => '100m',
     );
 
-    my $data = $cache->compute('dataset_overview_list', '24 hours', sub {
+    my $data = $cache->compute('dataset_funcoes_' . $c->stash->{dataset_text}, '24 hours', sub {
         _get_data_root($c)
     });
 
