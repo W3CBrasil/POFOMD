@@ -18,7 +18,7 @@ sub list : Chained('/base') : PathPart('datasets') : Args(0) {
         cache_size => '100m',
     );
 
-    my ($dts, $total_all) = $cache->compute('dataset_overview_list', '6 hours', sub {
+    my ($dts, $total_all) = $cache->compute('dataset_overview_list', '24 hours', sub {
         _get_list($c)
     });
 
@@ -90,31 +90,19 @@ sub data : Chained('year') CaptureArgs(0) {
 sub data_root : Chained('data') : PathPart('') Args(0) {
     my ( $self, $c ) = @_;
     my @data;
-    my $rs     = $c->stash->{rs};
-    my $search = $rs->search(
-        { dataset_id => $c->stash->{dataset}->id },
-        {
-            select => [ 'dataset_id', 'funcao_id', { sum => 'valor' } ],
-            as       => [qw/dataset_id funcao_id valor/],
-            group_by => [qw/dataset_id funcao_id/]
-        }
+
+    # TODO: integrate better with Catalyst
+    my $cache = CHI->new(
+        driver => 'FastMmap',
+        root_dir => $c->path_to('/tmp/fastmmap-cache/')->stringify,
+        cache_size => '100m',
     );
 
-    foreach my $item ( $search->all ) {
+    my $data = $cache->compute('dataset_overview_list', '24 hours', sub {
+        _get_data_root($c)
+    });
 
-        # Preparando dados para handle_TREE
-        push(
-            @data,
-            {
-                id => join( '.', $item->dataset_id, $item->funcao_id ),
-                display => $item->funcao->nome,
-                link    => $item->funcao_id,
-                total   => $item->valor
-            }
-        );
-    }
-
-    $c->stash->{data} = \@data;
+    $c->stash->{data} = $data;
     $c->forward('handle_TREE');
 }
 
@@ -365,6 +353,37 @@ sub _get_list {
     }
 
     return (\@dts, $total_all);
+}
+
+sub _get_data_root {
+    my $c = shift;
+
+    my @data;
+    my $rs     = $c->stash->{rs};
+    my $search = $rs->search(
+        { dataset_id => $c->stash->{dataset}->id },
+        {
+            select => [ 'dataset_id', 'funcao_id', { sum => 'valor' } ],
+            as       => [qw/dataset_id funcao_id valor/],
+            group_by => [qw/dataset_id funcao_id/]
+        }
+    );
+
+    foreach my $item ( $search->all ) {
+
+        # Preparando dados para handle_TREE
+        push(
+            @data,
+            {
+                id      => join( '.', $item->dataset_id, $item->funcao_id ),
+                display => $item->funcao->nome,
+                link    => $item->funcao_id,
+                total   => $item->valor
+            }
+        );
+    }
+
+    return \@data;
 }
 
 __PACKAGE__->meta->make_immutable;
