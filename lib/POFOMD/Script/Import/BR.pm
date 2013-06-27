@@ -5,10 +5,10 @@ use POFOMD ();
 use Text::Unaccent::PurePerl ();
 use Text::CSV_XS;
 use Text2URI;
+use Data::Dumper;
 use DateTime;
 use autodie;
 use utf8;
-use Data::Dumper;
 
 with 'MooseX::Getopt::GLD';
 
@@ -174,14 +174,7 @@ sub load_csv_into_db {
 
         $VALOR =~ s/\,/\./g;
 
-        my $pagamento;
-
-        if ($pagamento = $pagamento_rs->find({ numero_nota_empenho => $NUMERO_DOCUMENTO_PAGAMENTO })) {
-            my $gasto = $pagamento->gastos->first;
-            next if ($gasto && $gasto->dataset_id eq $dataset_id);
-        }
-
-        $pagamento ||= $pagamento_rs->create({
+        my $pagamento = $pagamento_rs->create({
             numero_processo => undef, # não informado
             numero_nota_empenho => $NUMERO_DOCUMENTO_PAGAMENTO,
             tipo_licitacao  => undef, # não informado
@@ -190,7 +183,7 @@ sub load_csv_into_db {
             valor_pago_anos_anteriores => 0,
         });
 
-        my $obj = $gasto_rs->find_or_new({
+        my $obj = $gasto_rs->create({
             dataset_id => $dataset_id,
 
             $self->_cache_or_create(
@@ -263,8 +256,7 @@ sub load_csv_into_db {
             valor => $VALOR
         });
 
-        debug("$line - %s", $obj);
-        debug();
+        debug("$line - %s") if ($line % 100 == 0);
     }
 }
 
@@ -291,7 +283,7 @@ sub _cache_or_create {
 
     if (exists $CACHE_INSERTING->{$campo}{$codigo}){
         $id = $CACHE_INSERTING->{$campo}{$codigo};
-        debug("\tloading from cache: $campo");
+        #debug("\tloading from cache: $campo");
     }
     else {
         my $obj = $self->_resultsets->{$set}->create($info);
@@ -315,7 +307,7 @@ sub _cache_or_create_beneficiario {
 
     if (exists $CACHE_INSERTING->{$campo}{$codigo}){
         $id = $CACHE_INSERTING->{$campo}{$codigo};
-        debug("\tloading from cache: $campo");
+        #debug("\tloading from cache: $campo");
     }
     else {
         my $obj = $rs->find( { codigo => $codigo } )

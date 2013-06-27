@@ -184,17 +184,7 @@ sub load_csv_into_db {
         $VALOR_LIQUIDADO =~ s/\,/\./g;
         $VALOR_PAGO_DE_ANOS_ANTERIORES =~ s/\,/\./g;
 
-        my $pagamento;
-
-        if (
-            ($pagamento = $pagamento_rs->find({ numero_nota_empenho => $NUMERO_NOTA_DE_EMPENHO })) ||
-            ($pagamento = $pagamento_rs->find({ numero_processo     => $NUMERO_PROCESSO }))
-        ) {
-            my $gasto = $pagamento->gastos->first;
-            next if ($gasto && $gasto->dataset_id eq $dataset_id);
-        }
-
-        $pagamento ||= $pagamento_rs->create({
+        my $pagamento ||= $pagamento_rs->create({
             numero_processo            => $NUMERO_PROCESSO,
             numero_nota_empenho        => $NUMERO_NOTA_DE_EMPENHO,
             tipo_licitacao             => $TIPO_LICITACAO,
@@ -304,7 +294,7 @@ sub _cache_or_create {
 
     if (exists $CACHE_INSERTING->{$campo}{$codigo}){
         $id = $CACHE_INSERTING->{$campo}{$codigo};
-        debug("\tloading from cache: $campo");
+        # debug("\tloading from cache: $campo");
     }
     else {
         my $obj = $self->_resultsets->{$set}->create($info);

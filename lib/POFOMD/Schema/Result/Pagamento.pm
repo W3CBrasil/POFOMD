@@ -14,20 +14,15 @@ __PACKAGE__->add_columns(
         is_nullable       => 0,
         sequence          => 'pagamento_id_seq',
     },
-    'numero_processo'     => { data_type => 'varchar' },
+    'numero_processo'     => { data_type => 'varchar', is_nullable => 1 },
     'numero_nota_empenho' => { data_type => 'varchar' },
-    'tipo_licitacao'      => { data_type => 'varchar' },
+    'tipo_licitacao'      => { data_type => 'varchar', is_nullable => 1 },
     'valor_empenhado'     => { data_type => 'float', default_value => 0 },
     'valor_liquidado'     => { data_type => 'float' },
     'valor_pago_anos_anteriores' => { data_type => 'float', default_value => 0 },
 );
 
 __PACKAGE__->set_primary_key('id');
-
-__PACKAGE__->add_unique_constraints(
-    [ qw/numero_processo/     ],
-    [ qw/numero_nota_empenho/ ],
-);
 
 __PACKAGE__->has_many(
     'gastos',
