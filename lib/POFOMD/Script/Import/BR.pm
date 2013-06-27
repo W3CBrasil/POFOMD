@@ -256,7 +256,7 @@ sub load_csv_into_db {
             valor => $VALOR
         });
 
-        debug("$line - %s") if ($line % 100 == 0);
+        debug($line) if ($line % 100 == 0);
     }
 }
 

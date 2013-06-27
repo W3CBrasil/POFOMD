@@ -266,8 +266,7 @@ sub load_csv_into_db {
             valor => $VALOR_LIQUIDADO
         });
 
-        debug("$line - %s");
-        debug();
+        debug($line) if ($line % 100 == 0);
     }
 }
 
@@ -318,7 +317,7 @@ sub _cache_or_create_beneficiario {
 
     if (exists $CACHE_INSERTING->{$campo}{$codigo}){
         $id = $CACHE_INSERTING->{$campo}{$codigo};
-        debug("\tloading from cache: $campo");
+        # debug("\tloading from cache: $campo");
     }
     else {
         my $obj = $rs->find( { codigo => $codigo } )
